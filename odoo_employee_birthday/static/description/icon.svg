@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#db2777"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.2)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="128" height="128" rx="26" fill="url(#bg)"/>
+  <rect width="128" height="64" rx="26" fill="url(#shine)"/>
+
+  <!-- Cake base (plate) -->
+  <rect x="18" y="88" width="92" height="24" rx="10" fill="rgba(255,255,255,0.95)"/>
+
+  <!-- Cake tier 2 -->
+  <rect x="26" y="64" width="76" height="28" rx="8" fill="rgba(255,255,255,0.88)"/>
+  <!-- Frosting drips on tier 2 -->
+  <path d="M26 70 Q31 63 36 70 Q41 63 46 70 Q51 63 56 70 Q61 63 66 70 Q71 63 76 70 Q81 63 86 70 Q91 63 96 70 Q101 63 102 70"
+        fill="none" stroke="rgba(251,191,36,0.75)" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Cake tier 3 (top) -->
+  <rect x="36" y="42" width="56" height="26" rx="7" fill="rgba(255,255,255,0.78)"/>
+  <!-- Frosting drips on tier 3 -->
+  <path d="M36 48 Q40 42 44 48 Q48 42 52 48 Q56 42 60 48 Q64 42 68 48 Q72 42 76 48 Q80 42 84 48 Q88 42 92 48"
+        fill="none" stroke="rgba(244,114,182,0.7)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Candle 1 (yellow) -->
+  <rect x="50" y="27" width="8" height="17" rx="4" fill="#fbbf24"/>
+  <!-- Candle 2 (pink) -->
+  <rect x="70" y="27" width="8" height="17" rx="4" fill="#f472b6"/>
+
+  <!-- Flame 1 -->
+  <ellipse cx="54" cy="23" rx="5" ry="6.5" fill="#fde68a"/>
+  <ellipse cx="54" cy="24" rx="2.8" ry="4" fill="#f59e0b"/>
+  <!-- Flame 2 -->
+  <ellipse cx="74" cy="23" rx="5" ry="6.5" fill="#fde68a"/>
+  <ellipse cx="74" cy="24" rx="2.8" ry="4" fill="#f59e0b"/>
+
+  <!-- Decorative sparkles -->
+  <circle cx="22" cy="44" r="2.5" fill="rgba(255,255,255,0.65)"/>
+  <circle cx="106" cy="58" r="2" fill="rgba(255,255,255,0.55)"/>
+  <circle cx="112" cy="36" r="1.5" fill="rgba(255,255,255,0.5)"/>
+  <circle cx="18" cy="72" r="1.5" fill="rgba(255,255,255,0.45)"/>
+</svg>

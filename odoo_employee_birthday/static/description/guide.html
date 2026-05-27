@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hướng dẫn sử dụng — Employee Birthday Tracker (Odoo 19)</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#1e293b;background:#f8fafc;line-height:1.6}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid #e2e8f0;padding:0 24px}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:16px;height:56px}
+.nav-brand{font-size:1rem;font-weight:800;color:#7c3aed;display:flex;align-items:center;gap:8px}
+.nav-links{display:flex;gap:4px;margin-left:auto}
+.nav-links a{color:#64748b;text-decoration:none;font-size:.82rem;padding:6px 12px;border-radius:6px;transition:background .15s}
+.nav-links a:hover{background:#f1f5f9;color:#1e293b}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 50%,#db2777 100%);color:#fff;padding:64px 24px;text-align:center}
+.hero-icon{font-size:72px;display:block;margin-bottom:20px;filter:drop-shadow(0 6px 16px rgba(0,0,0,.25))}
+.hero h1{font-size:2.4rem;font-weight:800;margin-bottom:12px;letter-spacing:-.02em}
+.hero p{font-size:1.05rem;opacity:.9;max-width:580px;margin:0 auto 28px;line-height:1.65}
+.badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);color:#fff;padding:5px 16px;border-radius:20px;font-size:.8rem;font-weight:700}
+
+/* Main layout */
+.layout{max-width:1000px;margin:48px auto;padding:0 24px;display:grid;grid-template-columns:220px 1fr;gap:40px;align-items:start}
+.sidebar{position:sticky;top:72px}
+.toc{background:#fff;border:1.5px solid #e2e8f0;border-radius:14px;padding:20px;list-style:none}
+.toc-title{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#94a3b8;margin-bottom:12px}
+.toc li{margin-bottom:2px}
+.toc a{color:#475569;text-decoration:none;font-size:.85rem;display:block;padding:5px 8px;border-radius:6px;transition:all .15s}
+.toc a:hover,.toc a.active{background:#f3f0ff;color:#7c3aed;font-weight:600}
+.toc .sub a{padding-left:20px;font-size:.8rem;color:#64748b}
+
+/* Sections */
+.content{}
+.section{background:#fff;border:1.5px solid #e2e8f0;border-radius:16px;padding:36px;margin-bottom:28px;scroll-margin-top:72px}
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.section-num{width:36px;height:36px;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0}
+.section h2{font-size:1.4rem;font-weight:800;color:#1e293b}
+.section h3{font-size:1.05rem;font-weight:700;color:#1e293b;margin:24px 0 10px}
+.section p{color:#475569;line-height:1.7;margin-bottom:12px}
+.section p:last-child{margin-bottom:0}
+
+/* Steps */
+.steps{display:flex;flex-direction:column;gap:16px}
+.step{display:flex;gap:16px;padding:18px;background:#f8fafc;border-radius:12px;border:1px solid #e2e8f0}
+.step-n{width:32px;height:32px;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;flex-shrink:0;margin-top:2px}
+.step h4{font-size:.95rem;font-weight:700;margin-bottom:5px;color:#1e293b}
+.step p{color:#64748b;font-size:.88rem;line-height:1.55;margin:0}
+.step code{background:#ede9fe;padding:1px 6px;border-radius:4px;font-size:.85em;color:#7c3aed}
+
+/* Screenshots */
+.screenshot-wrap{margin:20px 0;border-radius:12px;overflow:hidden;border:2px solid #e2e8f0;box-shadow:0 8px 32px rgba(0,0,0,.08)}
+.screenshot-wrap img{width:100%;display:block}
+.screenshot-caption{background:#f8fafc;padding:10px 16px;font-size:.8rem;color:#64748b;border-top:1px solid #e2e8f0;display:flex;align-items:center;gap:6px}
+.screenshot-caption::before{content:'📸';font-size:.85rem}
+
+/* Feature cards */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.feat{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:12px;padding:18px}
+.feat-ico{font-size:28px;display:block;margin-bottom:10px}
+.feat h4{font-size:.9rem;font-weight:700;color:#1e293b;margin-bottom:6px}
+.feat p{color:#64748b;font-size:.83rem;line-height:1.6;margin:0}
+
+/* KPI legend */
+.kpi-legend{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.kpi-item{text-align:center;padding:14px 8px;border-radius:12px;border-top:3px solid}
+.kpi-item.today{background:#fff5f5;border-color:#ef4444}
+.kpi-item.d3{background:#fffbeb;border-color:#f59e0b}
+.kpi-item.d7{background:#f5f3ff;border-color:#8b5cf6}
+.kpi-item.d15{background:#eff6ff;border-color:#3b82f6}
+.kpi-label{font-size:.75rem;font-weight:700;color:#64748b;margin-bottom:4px}
+.kpi-emoji{font-size:1.4rem}
+.kpi-desc{font-size:.7rem;color:#94a3b8;margin-top:4px;line-height:1.4}
+
+/* Urgency badges reference */
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.urgency-badge{padding:4px 12px;border-radius:20px;font-size:.78rem;font-weight:700}
+.b-today{background:#fef2f2;color:#ef4444;border:1px solid #fecaca}
+.b-3d{background:#fffbeb;color:#d97706;border:1px solid #fde68a}
+.b-7d{background:#f5f3ff;color:#7c3aed;border:1px solid #ddd6fe}
+.b-15d{background:#eff6ff;color:#3b82f6;border:1px solid #bfdbfe}
+
+/* Code blocks */
+pre{background:#1e293b;color:#e2e8f0;padding:16px;border-radius:10px;font-size:.82rem;overflow-x:auto;margin:12px 0;line-height:1.6}
+pre .c{color:#94a3b8}
+code.inline{background:#f1f5f9;padding:2px 7px;border-radius:4px;font-size:.85em;color:#7c3aed}
+
+/* Info box */
+.info-box{background:#f0fdf4;border:1.5px solid #86efac;border-radius:10px;padding:14px 16px;display:flex;gap:10px;margin:14px 0}
+.info-box .icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.info-box p{color:#166534;font-size:.85rem;margin:0;line-height:1.55}
+
+.warn-box{background:#fffbeb;border:1.5px solid #fde68a;border-radius:10px;padding:14px 16px;display:flex;gap:10px;margin:14px 0}
+.warn-box p{color:#92400e;font-size:.85rem;margin:0;line-height:1.55}
+
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85rem;margin:14px 0}
+th{background:#f8fafc;color:#475569;text-align:left;padding:10px 14px;border:1px solid #e2e8f0;font-weight:700}
+td{padding:10px 14px;border:1px solid #e2e8f0;color:#374151;vertical-align:top}
+tr:hover td{background:#fafafa}
+
+/* Footer */
+footer{background:#1e293b;color:#64748b;text-align:center;padding:32px 24px;margin-top:60px;font-size:.82rem}
+footer a{color:#a78bfa}
+footer strong{color:#e2e8f0}
+
+/* Responsive */
+@media(max-width:768px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .hero h1{font-size:1.75rem}
+  .feat-grid{grid-template-columns:1fr}
+  .kpi-legend{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">🎂 Employee Birthday Tracker</div>
+    <div class="nav-links">
+      <a href="#install">Cài đặt</a>
+      <a href="#features">Tính năng</a>
+      <a href="#usage">Sử dụng</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <span class="hero-icon">🎂</span>
+  <h1>Employee Birthday Tracker</h1>
+  <p>Theo dõi sinh nhật nhân viên với dashboard OWL đẹp mắt. Phân nhóm theo hôm nay, 3 ngày, 7 ngày, 15 ngày — cùng biểu đồ thống kê theo tháng.</p>
+  <div class="badges">
+    <span class="badge">✓ Odoo 19.0</span>
+    <span class="badge">✓ Miễn phí · LGPL-3</span>
+    <span class="badge">✓ OWL Dashboard</span>
+    <span class="badge">✓ Không cần cấu hình</span>
+  </div>
+</div>
+
+<!-- Body -->
+<div class="layout">
+
+  <!-- Sidebar TOC -->
+  <aside class="sidebar">
+    <ul class="toc">
+      <div class="toc-title">Nội dung</div>
+      <li><a href="#overview">1. Giới thiệu</a></li>
+      <li><a href="#requirements">2. Yêu cầu hệ thống</a></li>
+      <li><a href="#install">3. Cài đặt module</a></li>
+      <li><a href="#features">4. Tính năng chính</a></li>
+      <li class="sub"><li class="sub"><a href="#kpi-cards">— 4 nhóm KPI</a></li></li>
+      <li class="sub"><a href="#upcoming-list">— Danh sách sắp tới</a></li>
+      <li class="sub"><a href="#monthly-chart">— Biểu đồ theo tháng</a></li>
+      <li><a href="#usage">5. Hướng dẫn sử dụng</a></li>
+      <li><a href="#employee-setup">6. Thiết lập nhân viên</a></li>
+      <li><a href="#faq">7. FAQ</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <main class="content">
+
+    <!-- 1. Overview -->
+    <section class="section" id="overview">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <h2>Giới thiệu</h2>
+      </div>
+      <p>
+        <strong>Employee Birthday Tracker</strong> là module Odoo 19 miễn phí (LGPL-3) giúp phòng HR theo dõi và quản lý sinh nhật nhân viên một cách trực quan. Module cung cấp dashboard tương tác xây dựng bằng OWL 2 — framework frontend hiện đại của Odoo.
+      </p>
+
+      <div class="feat-grid">
+        <div class="feat">
+          <span class="feat-ico">🎯</span>
+          <h4>4 Nhóm Sinh Nhật Thông Minh</h4>
+          <p>Phân loại tức thời: Hôm nay, Còn 3 ngày, Còn 7 ngày, Còn 15 ngày. Click vào thẻ để xem danh sách chi tiết.</p>
+        </div>
+        <div class="feat">
+          <span class="feat-ico">📊</span>
+          <h4>Biểu Đồ Thống Kê Theo Tháng</h4>
+          <p>Biểu đồ cột SVG phân bổ sinh nhật qua 12 tháng. Tháng hiện tại được tô đậm bằng màu tím.</p>
+        </div>
+        <div class="feat">
+          <span class="feat-ico">⚡</span>
+          <h4>Hiệu Suất Cao</h4>
+          <p>Toàn bộ dữ liệu tải qua một JSON-RPC endpoint duy nhất. Không cần reload trang, cập nhật tức thì.</p>
+        </div>
+        <div class="feat">
+          <span class="feat-ico">🔓</span>
+          <h4>Hoàn Toàn Miễn Phí</h4>
+          <p>License LGPL-3. Chỉ phụ thuộc vào <code class="inline">hr</code> và <code class="inline">web</code>. Cài đặt và dùng ngay.</p>
+        </div>
+      </div>
+
+      <div class="screenshot-wrap">
+        <img src="screenshots/01-dashboard.png" alt="Dashboard chính Employee Birthday Tracker" loading="lazy">
+        <div class="screenshot-caption">Dashboard chính — 4 thẻ KPI, danh sách avatar sinh nhật hôm nay, và biểu đồ tháng</div>
+      </div>
+    </section>
+
+    <!-- 2. Requirements -->
+    <section class="section" id="requirements">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <h2>Yêu Cầu Hệ Thống</h2>
+      </div>
+      <table>
+        <tr><th>Yêu cầu</th><th>Phiên bản</th><th>Ghi chú</th></tr>
+        <tr><td>Odoo</td><td>19.0</td><td>Community hoặc Enterprise</td></tr>
+        <tr><td>Python</td><td>3.10+</td><td>Đi kèm Odoo 19</td></tr>
+        <tr><td>Module hr</td><td>Bất kỳ</td><td>Module HR chuẩn của Odoo</td></tr>
+        <tr><td>Module web</td><td>Bất kỳ</td><td>Module Web chuẩn của Odoo</td></tr>
+        <tr><td>Trình duyệt</td><td>Chrome 90+ / Firefox 88+</td><td>Hỗ trợ OWL 2</td></tr>
+      </table>
+      <div class="info-box">
+        <span class="icon">ℹ️</span>
+        <p>Module không yêu cầu bất kỳ cấu hình thêm nào. Cài đặt xong là có thể dùng ngay, miễn là module <strong>hr</strong> đã được cài đặt.</p>
+      </div>
+    </section>
+
+    <!-- 3. Installation -->
+    <section class="section" id="install">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <h2>Cài Đặt Module</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div>
+            <h4>Sao chép thư mục module</h4>
+            <p>Copy thư mục <code>employee_birthday</code> vào thư mục custom addons của Odoo. Ví dụ:</p>
+            <pre>cp -r employee_birthday /path/to/odoo/custom-addons/</pre>
+            <p>Hoặc nếu dùng Docker Compose, đặt vào thư mục được mount vào <code>/mnt/extra-addons</code>.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-n">2</div>
+          <div>
+            <h4>Bật Developer Mode</h4>
+            <p>Vào <strong>Settings → General Settings</strong>, cuộn xuống cuối trang, click <strong>Activate the developer mode</strong>. Hoặc thêm <code>?debug=1</code> vào URL.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-n">3</div>
+          <div>
+            <h4>Cập nhật danh sách ứng dụng</h4>
+            <p>Vào <strong>Apps → Update Apps List</strong> (cần bật Developer Mode). Odoo sẽ quét lại các thư mục addons và tìm thấy module mới.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-n">4</div>
+          <div>
+            <h4>Tìm và cài đặt module</h4>
+            <p>Trong màn hình Apps, tìm kiếm <strong>"Birthday Tracker"</strong> hoặc <strong>"Employee Birthday"</strong>. Click <strong>Install</strong>.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-n">5</div>
+          <div>
+            <h4>Truy cập Dashboard</h4>
+            <p>Sau khi cài xong, menu <strong>🎂 Birthday Tracker</strong> xuất hiện trên thanh điều hướng trên cùng. Click vào để mở Dashboard.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <span class="icon">✅</span>
+        <p>Module đã được kiểm tra thành công trên Odoo 19.0 Community với Docker. Quá trình cài đặt mất khoảng 30–60 giây.</p>
+      </div>
+    </section>
+
+    <!-- 4. Features -->
+    <section class="section" id="features">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <h2>Tính Năng Chính</h2>
+      </div>
+
+      <!-- 4a. KPI Cards -->
+      <h3 id="kpi-cards">4.1 Bốn Thẻ KPI — Phân Nhóm Sinh Nhật</h3>
+      <p>Dashboard hiển thị 4 thẻ KPI ở hàng đầu tiên, mỗi thẻ đại diện cho một nhóm thời gian:</p>
+
+      <div class="kpi-legend">
+        <div class="kpi-item today">
+          <div class="kpi-emoji">🎂</div>
+          <div class="kpi-label">Hôm Nay</div>
+          <div class="kpi-desc">Nhân viên có sinh nhật đúng ngày hôm nay</div>
+        </div>
+        <div class="kpi-item d3">
+          <div class="kpi-emoji">⏰</div>
+          <div class="kpi-label">Còn 3 Ngày</div>
+          <div class="kpi-desc">Sinh nhật trong vòng 1–3 ngày tới</div>
+        </div>
+        <div class="kpi-item d7">
+          <div class="kpi-emoji">📅</div>
+          <div class="kpi-label">Còn 7 Ngày</div>
+          <div class="kpi-desc">Sinh nhật trong vòng 4–7 ngày tới</div>
+        </div>
+        <div class="kpi-item d15">
+          <div class="kpi-emoji">🗓️</div>
+          <div class="kpi-label">Còn 15 Ngày</div>
+          <div class="kpi-desc">Sinh nhật trong vòng 8–15 ngày tới</div>
+        </div>
+      </div>
+
+      <div class="warn-box">
+        <span class="icon">⚠️</span>
+        <p><strong>Lưu ý về phạm vi nhóm:</strong> Nhóm "Còn 3 ngày" và "Còn 7 ngày" là <em>độc lập với nhóm Hôm nay</em>. Nghĩa là: ai sinh nhật hôm nay chỉ tính vào "Hôm nay", không tính vào 3/7/15 ngày. Nhóm 3d ⊂ 7d ⊂ 15d (nhân viên trong 3d cũng tính vào 7d và 15d).</p>
+      </div>
+
+      <p><strong>Click vào bất kỳ thẻ nào</strong> để mở danh sách nhân viên thuộc nhóm đó trong chế độ xem List và Form đầy đủ.</p>
+
+      <div class="screenshot-wrap">
+        <img src="screenshots/04-today-filtered-list.png" alt="Danh sách lọc sinh nhật hôm nay" loading="lazy">
+        <div class="screenshot-caption">Kết quả sau khi click thẻ "Hôm Nay" — danh sách nhân viên được lọc tức thì</div>
+      </div>
+
+      <!-- 4b. Upcoming list -->
+      <h3 id="upcoming-list">4.2 Danh Sách Sắp Tới (15 Ngày)</h3>
+      <p>Phần dưới dashboard hiển thị tối đa 10 nhân viên có sinh nhật trong 15 ngày tới, sắp xếp theo số ngày còn lại từ ít đến nhiều.</p>
+      <p>Mỗi dòng bao gồm: <strong>ảnh đại diện</strong>, tên nhân viên, phòng ban, ngày sinh (dd/mm), và <strong>huy hiệu màu sắc</strong> thể hiện mức độ cấp bách:</p>
+      <div class="badge-row">
+        <span class="urgency-badge b-today">Hôm nay 🎂</span>
+        <span class="urgency-badge b-3d">3 ngày ⏰</span>
+        <span class="urgency-badge b-7d">7 ngày 📅</span>
+        <span class="urgency-badge b-15d">15 ngày 🗓️</span>
+      </div>
+
+      <div class="screenshot-wrap">
+        <img src="screenshots/03-upcoming-list.png" alt="Danh sách sinh nhật sắp tới" loading="lazy">
+        <div class="screenshot-caption">Danh sách "Sắp Tới" — có huy hiệu màu sắc phân biệt mức độ khẩn cấp</div>
+      </div>
+
+      <!-- 4c. Monthly chart -->
+      <h3 id="monthly-chart">4.3 Biểu Đồ Phân Bổ Theo Tháng</h3>
+      <p>Biểu đồ cột SVG hiển thị tổng số sinh nhật của toàn bộ nhân viên theo từng tháng trong năm. Tháng hiện tại được <strong>tô màu tím</strong> để dễ nhận biết.</p>
+      <p>Biểu đồ tự động tính toán tỷ lệ cột dựa trên tháng có nhiều sinh nhật nhất — không bao giờ có cột bằng 0 (cột rỗng có chiều cao tối thiểu 2px).</p>
+
+      <div class="screenshot-wrap">
+        <img src="screenshots/02-dashboard-upcoming.png" alt="Biểu đồ tháng và danh sách upcoming" loading="lazy">
+        <div class="screenshot-caption">Biểu đồ phân bổ sinh nhật theo tháng — tháng 5 (May) đang được tô sáng màu tím</div>
+      </div>
+    </section>
+
+    <!-- 5. Usage -->
+    <section class="section" id="usage">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <h2>Hướng Dẫn Sử Dụng</h2>
+      </div>
+
+      <h3>5.1 Mở Dashboard</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">→</div>
+          <div>
+            <h4>Truy cập từ menu chính</h4>
+            <p>Click vào <code>🎂 Birthday Tracker</code> trên thanh điều hướng trên cùng. Dashboard tải dữ liệu tự động khi mở.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>5.2 Xem Chi Tiết Theo Nhóm</h3>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">→</div>
+          <div>
+            <h4>Click thẻ KPI để lọc</h4>
+            <p>Click vào bất kỳ thẻ nào (Hôm Nay / 3 Ngày / 7 Ngày / 15 Ngày) để mở danh sách nhân viên của nhóm đó. Danh sách hỗ trợ cả chế độ xem List và Form.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">→</div>
+          <div>
+            <h4>Xem toàn bộ nhân viên</h4>
+            <p>Click nút <strong>"Tất cả nhân viên"</strong> ở cuối danh sách "Sắp Tới" để xem toàn bộ nhân viên có khai báo ngày sinh, sắp xếp theo tháng sinh nhật.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="screenshot-wrap">
+        <img src="screenshots/05-all-birthdays.png" alt="Toàn bộ danh sách sinh nhật" loading="lazy">
+        <div class="screenshot-caption">Danh sách "Tất Cả Sinh Nhật" — 16 nhân viên được sắp xếp theo ngày sinh nhật</div>
+      </div>
+
+      <h3>5.3 Làm Mới Dữ Liệu</h3>
+      <p>Dữ liệu dashboard được tải khi mở trang. Để làm mới, <strong>reload trang</strong> hoặc điều hướng đến menu khác rồi quay lại Birthday Tracker.</p>
+    </section>
+
+    <!-- 6. Employee Setup -->
+    <section class="section" id="employee-setup">
+      <div class="section-header">
+        <div class="section-num">6</div>
+        <h2>Thiết Lập Thông Tin Nhân Viên</h2>
+      </div>
+      <p>Để module hoạt động chính xác, mỗi nhân viên cần có ngày sinh nhật được khai báo trong hồ sơ Odoo HR.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div>
+            <h4>Vào hồ sơ nhân viên</h4>
+            <p>Vào <code>Employees → Employees</code>, chọn nhân viên cần cập nhật.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div>
+            <h4>Mở tab Private Information</h4>
+            <p>Trong form nhân viên, click tab <strong>"Private Information"</strong> (hoặc "Thông tin cá nhân").</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div>
+            <h4>Nhập ngày sinh</h4>
+            <p>Tìm trường <strong>"Date of Birth"</strong> và nhập ngày sinh của nhân viên. Lưu lại. Nhân viên sẽ xuất hiện trên dashboard Birthday Tracker ngay lập tức.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="warn-box">
+        <span class="icon">⚠️</span>
+        <p>Nhân viên chưa khai báo ngày sinh sẽ <strong>không hiển thị</strong> trên Dashboard. Hãy đảm bảo toàn bộ nhân viên đã được cập nhật trường "Date of Birth" trong hồ sơ Odoo HR.</p>
+      </div>
+
+      <div class="info-box">
+        <span class="icon">🎂</span>
+        <p><strong>Hỗ trợ ngày 29 tháng 2:</strong> Module xử lý đúng sinh nhật ngày 29/2. Trong những năm không nhuận, sinh nhật sẽ được tính vào ngày 28/2 thay vì bị lỗi.</p>
+      </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section class="section" id="faq">
+      <div class="section-header">
+        <div class="section-num">7</div>
+        <h2>Câu Hỏi Thường Gặp (FAQ)</h2>
+      </div>
+
+      <h3>❓ Dashboard hiện số 0 cho tất cả nhóm?</h3>
+      <p>Kiểm tra xem nhân viên đã có trường "Date of Birth" được điền chưa trong <code>Employees → Private Information</code>. Dashboard chỉ hiển thị nhân viên đang active và có khai báo ngày sinh.</p>
+
+      <h3>❓ Nhân viên sinh nhật 29/2 — hiển thị thế nào?</h3>
+      <p>Trong năm không nhuận, sinh nhật 29/2 được tính về ngày 28/2. Nhân viên sẽ xuất hiện đúng ở nhóm tương ứng vào ngày 28/2 của năm đó.</p>
+
+      <h3>❓ Tôi có thể chỉnh sửa số ngày không (ví dụ thêm nhóm 30 ngày)?</h3>
+      <p>Có. Module hoàn toàn mã nguồn mở (LGPL-3). Bạn chỉnh sửa logic phân nhóm trong <code>controllers/main.py</code> và cập nhật template OWL trong <code>static/src/xml/birthday-dashboard.xml</code>.</p>
+
+      <h3>❓ Module có hoạt động với Odoo Enterprise không?</h3>
+      <p>Có. Module chỉ phụ thuộc vào <code>hr</code> và <code>web</code>, cả hai đều có trong Community và Enterprise. Không có xung đột với các module Enterprise.</p>
+
+      <h3>❓ Dữ liệu có cập nhật tự động không?</h3>
+      <p>Dữ liệu được tải khi mở Dashboard. Để xem dữ liệu mới nhất, reload trang. Không có auto-refresh vì đây là dashboard tĩnh — phù hợp để kiểm tra thủ công vào đầu mỗi ngày làm việc.</p>
+
+      <h3>❓ Làm thế nào để xóa module?</h3>
+      <p>Vào <code>Apps</code>, tìm "Birthday Tracker", click <strong>Uninstall</strong>. Module không tạo cột database riêng (chỉ sử dụng trường <code>birthday</code> sẵn có của hr.employee), nên gỡ cài đặt rất an toàn.</p>
+
+      <div class="info-box">
+        <span class="icon">💬</span>
+        <p>Cần hỗ trợ thêm? Module được duy trì bởi <strong>Randy Nguyen</strong>. Mọi báo cáo lỗi hoặc đề xuất tính năng có thể gửi qua Odoo App Store hoặc GitHub.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <p><strong>Employee Birthday Tracker</strong> · Odoo 19.0 · LGPL-3 · Made with ❤️ by <a href="#">Randy Nguyen</a></p>
+  <p style="margin-top:8px">Tài liệu hướng dẫn được kiểm tra trực tiếp trên Odoo 19 Community (Docker) — Tháng 5/2026</p>
+</footer>
+
+<script>
+// Highlight active TOC item on scroll
+const sections = document.querySelectorAll('.section[id]');
+const links = document.querySelectorAll('.toc a');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { threshold: 0.3, rootMargin: '-60px 0px -60% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

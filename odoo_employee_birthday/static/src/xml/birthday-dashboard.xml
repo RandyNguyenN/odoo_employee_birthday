@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="odoo_employee_birthday.BirthdayDashboard">
+<div class="o_ebd_dashboard">
+
+    <!-- Loading -->
+    <t t-if="state.loading">
+        <div class="o_ebd_loading"><i class="fa fa-spinner fa-spin fa-3x"/></div>
+    </t>
+
+    <t t-else="">
+        <!-- Header -->
+        <div class="o_ebd_header">
+            <div class="o_ebd_header_left">
+                <span class="o_ebd_hero_icon">🎂</span>
+                <div>
+                    <h2 class="o_ebd_title">Birthday Tracker</h2>
+                    <p class="o_ebd_subtitle">Employee birthday overview</p>
+                </div>
+            </div>
+            <div class="o_ebd_header_right">
+                <span class="o_ebd_month_label" t-esc="currentMonthLabel"/>
+                <span class="o_ebd_year_label" t-esc="new Date().getFullYear()"/>
+            </div>
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="o_ebd_kpi_grid">
+            <div class="o_ebd_kpi o_ebd_kpi_today"
+                 t-on-click="() => this.openGroup('Today\'s Birthdays', 'today_ids')">
+                <div class="o_ebd_kpi_icon">🎂</div>
+                <div class="o_ebd_kpi_num" t-esc="state.today_count"/>
+                <div class="o_ebd_kpi_name">Today</div>
+                <div class="o_ebd_kpi_sub">Birthdays today</div>
+            </div>
+            <div class="o_ebd_kpi o_ebd_kpi_3d"
+                 t-on-click="() => this.openGroup('Birthdays in 3 Days', 'days3_ids')">
+                <div class="o_ebd_kpi_icon">⏰</div>
+                <div class="o_ebd_kpi_num" t-esc="state.days3_count"/>
+                <div class="o_ebd_kpi_name">In 3 Days</div>
+                <div class="o_ebd_kpi_sub">Coming very soon</div>
+            </div>
+            <div class="o_ebd_kpi o_ebd_kpi_7d"
+                 t-on-click="() => this.openGroup('Birthdays in 7 Days', 'days7_ids')">
+                <div class="o_ebd_kpi_icon">📅</div>
+                <div class="o_ebd_kpi_num" t-esc="state.days7_count"/>
+                <div class="o_ebd_kpi_name">In 7 Days</div>
+                <div class="o_ebd_kpi_sub">This week</div>
+            </div>
+            <div class="o_ebd_kpi o_ebd_kpi_15d"
+                 t-on-click="() => this.openGroup('Birthdays in 15 Days', 'days15_ids')">
+                <div class="o_ebd_kpi_icon">🗓️</div>
+                <div class="o_ebd_kpi_num" t-esc="state.days15_count"/>
+                <div class="o_ebd_kpi_name">In 15 Days</div>
+                <div class="o_ebd_kpi_sub">Next 2 weeks</div>
+            </div>
+        </div>
+
+        <!-- Content: Today grid + Monthly chart -->
+        <div class="o_ebd_content_row">
+
+            <!-- Today's Birthdays -->
+            <div class="o_ebd_panel">
+                <div class="o_ebd_panel_head">
+                    <span class="o_ebd_panel_title">🎉 Today's Birthdays</span>
+                    <span class="badge bg-danger rounded-pill" t-esc="state.today_count"/>
+                </div>
+                <div class="o_ebd_panel_body">
+                    <t t-if="!state.today_list.length">
+                        <div class="o_ebd_empty">
+                            <span class="o_ebd_empty_ico">🌟</span>
+                            <p>No birthdays today</p>
+                            <small>Check upcoming list below</small>
+                        </div>
+                    </t>
+                    <div t-else="" class="o_ebd_avatar_row">
+                        <t t-foreach="state.today_list" t-as="emp" t-key="emp.id">
+                            <div class="o_ebd_avcard">
+                                <div class="o_ebd_av_wrap">
+                                    <img t-attf-src="/web/image/hr.employee/#{emp.id}/image_128"
+                                         t-att-alt="emp.name" class="o_ebd_av"/>
+                                    <span class="o_ebd_av_badge">🎂</span>
+                                </div>
+                                <div class="o_ebd_av_name" t-esc="emp.name"/>
+                                <div class="o_ebd_av_dept" t-esc="emp.department"/>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Monthly Chart -->
+            <div class="o_ebd_panel">
+                <div class="o_ebd_panel_head">
+                    <span class="o_ebd_panel_title">📊 Birthdays by Month</span>
+                    <small class="text-muted" t-esc="currentMonthLabel + ' highlighted'"/>
+                </div>
+                <div class="o_ebd_panel_body">
+                    <svg class="o_ebd_chart" t-att-viewBox="chartViewBox" width="100%" height="185">
+                        <t t-foreach="chartBars" t-as="bar" t-key="bar.month">
+                            <rect t-att-x="bar.x" t-att-y="bar.y"
+                                  width="28" t-att-height="bar.h" rx="4"
+                                  t-att-fill="bar.isCurrent ? '#8b5cf6' : '#ddd8fe'"
+                                  class="o_ebd_bar"/>
+                            <text t-att-x="bar.x + 14" y="175"
+                                  text-anchor="middle" class="o_ebd_bar_lbl"
+                                  t-esc="bar.month"/>
+                            <text t-if="bar.count" t-att-x="bar.x + 14"
+                                  t-att-y="bar.y - 4" text-anchor="middle"
+                                  class="o_ebd_bar_cnt" t-esc="bar.count"/>
+                        </t>
+                    </svg>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Upcoming 15 Days -->
+        <div class="o_ebd_panel o_ebd_upcoming_panel">
+            <div class="o_ebd_panel_head">
+                <span class="o_ebd_panel_title">📋 Upcoming — Next 15 Days</span>
+                <button class="btn btn-sm btn-outline-secondary" t-on-click="openAll">
+                    View All →
+                </button>
+            </div>
+            <div class="o_ebd_panel_body">
+                <t t-if="!state.upcoming.length">
+                    <div class="o_ebd_empty">
+                        <p>No upcoming birthdays in the next 15 days 🎈</p>
+                    </div>
+                </t>
+                <div t-else="" class="o_ebd_ulist">
+                    <t t-foreach="state.upcoming" t-as="emp" t-key="emp.id">
+                        <div class="o_ebd_uitem">
+                            <img t-attf-src="/web/image/hr.employee/#{emp.id}/image_64"
+                                 t-att-alt="emp.name" class="o_ebd_uav"/>
+                            <div class="o_ebd_uinfo">
+                                <div class="o_ebd_uname" t-esc="emp.name"/>
+                                <div class="o_ebd_umeta">
+                                    <t t-if="emp.department"><t t-esc="emp.department"/> · </t>
+                                    <t t-esc="emp.birthday_display"/>
+                                </div>
+                            </div>
+                            <span t-att-class="'badge o_ebd_ubadge ' + (emp.days &lt;= 3 ? 'bg-warning text-dark' : emp.days &lt;= 7 ? 'bg-primary' : 'bg-info text-dark')">
+                                in <t t-esc="emp.days"/>d
+                            </span>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+
+    </t>
+</div>
+</t>
+
+</templates>

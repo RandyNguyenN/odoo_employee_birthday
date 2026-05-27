@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="menu_employee_birthday_root"
+        name="Birthday Tracker"
+        web_icon="odoo_employee_birthday,static/description/icon.svg"
+        sequence="100"/>
+
+    <menuitem
+        id="menu_employee_birthday_dashboard"
+        name="Dashboard"
+        parent="menu_employee_birthday_root"
+        action="action_employee_birthday_dashboard"
+        sequence="10"/>
+
+    <menuitem
+        id="menu_employee_birthday_all"
+        name="All Birthdays"
+        parent="menu_employee_birthday_root"
+        action="action_employee_birthday_list"
+        sequence="20"/>
+</odoo>

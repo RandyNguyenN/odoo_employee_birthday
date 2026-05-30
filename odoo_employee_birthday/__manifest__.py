@@ -1,10 +1,10 @@
 {
     'name': 'Employee Birthday Tracker',
-    'version': '19.0.1.0.0',
+    'version': '18.0.1.0.0',
     'category': 'Human Resources',
     'summary': 'Track employee birthdays: Today, 3, 7, 15 days ahead — with monthly chart dashboard',
     'description': """
-Employee Birthday Tracker for Odoo 19 (Free / LGPL-3)
+Employee Birthday Tracker for Odoo 18 (Free / LGPL-3)
 ======================================================
 - OWL-powered dashboard: Today / 3 Days / 7 Days / 15 Days KPI groups
 - Click any group card to see the filtered employee list instantly

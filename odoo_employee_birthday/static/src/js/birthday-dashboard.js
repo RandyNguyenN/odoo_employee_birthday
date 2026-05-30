@@ -81,7 +81,7 @@ export class BirthdayDashboard extends Component {
     }
 
     openAll() {
-        this.action.doAction("odoo_employee_birthday.action_odoo_employee_birthday_list");
+        this.action.doAction("odoo_employee_birthday.action_employee_birthday_list");
     }
 }
 

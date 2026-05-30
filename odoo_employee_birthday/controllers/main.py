@@ -20,7 +20,7 @@ def _days_until_birthday(birthday, today):
 
 class EmployeeBirthdayController(http.Controller):
 
-    @http.route('/odoo_employee_birthday/dashboard_data', type='jsonrpc', auth='user')
+    @http.route('/odoo_employee_birthday/dashboard_data', type='json', auth='user')
     def dashboard_data(self):
         today = fields.Date.today()
         employees = request.env['hr.employee'].search([

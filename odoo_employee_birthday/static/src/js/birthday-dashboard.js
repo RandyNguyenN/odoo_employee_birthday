@@ -3,7 +3,6 @@
 import { Component, useState, onMounted } from "@odoo/owl";
 import { registry } from "@web/core/registry";
 import { useService } from "@web/core/utils/hooks";
-import { rpc } from "@web/core/network/rpc";
 
 const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const MONTHS_FULL  = ['January','February','March','April','May','June',
@@ -15,6 +14,7 @@ export class BirthdayDashboard extends Component {
     setup() {
         this.action = useService("action");
         this.notify = useService("notification");
+        this.rpc = useService("rpc");
 
         this.state = useState({
             loading:       true,
@@ -36,7 +36,7 @@ export class BirthdayDashboard extends Component {
 
     async _loadData() {
         try {
-            const data = await rpc("/odoo_employee_birthday/dashboard_data");
+            const data = await this.rpc("/odoo_employee_birthday/dashboard_data");
             Object.assign(this.state, data);
         } catch (e) {
             this.notify.add("Failed to load birthday data", { type: "danger" });
@@ -75,13 +75,13 @@ export class BirthdayDashboard extends Component {
             name: label,
             type: "ir.actions.act_window",
             res_model: "hr.employee",
-            views: [[false, "list"], [false, "form"]],
+            views: [[false, "tree"], [false, "form"]],
             domain: [["id", "in", ids]],
         });
     }
 
     openAll() {
-        this.action.doAction("odoo_employee_birthday.action_odoo_employee_birthday_list");
+        this.action.doAction("odoo_employee_birthday.action_employee_birthday_list");
     }
 }
 

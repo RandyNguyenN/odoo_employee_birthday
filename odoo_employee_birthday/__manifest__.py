@@ -12,8 +12,9 @@ Employee Birthday Tracker for Odoo 17 (Free / LGPL-3)
 - Upcoming 15-day list with color-coded urgency badges
 - Minimal dependencies: only requires hr + web
     """,
-    'author': 'Randy Nguyen',
-    'website': '',
+    'author': 'SunMesa Labs',
+    'website': 'https://odoo.sunmesalabs.com',
+    'support': 'randy@sunmesalabs.com',
     'license': 'LGPL-3',
     'depends': ['hr', 'web'],
     'data': [

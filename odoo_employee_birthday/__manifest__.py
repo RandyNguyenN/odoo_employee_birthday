@@ -1,6 +1,6 @@
 {
     'name': 'Employee Birthday Tracker',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.0.1',
     'category': 'Human Resources',
     'summary': 'Track employee birthdays: Today, 3, 7, 15 days ahead — with monthly chart dashboard',
     'description': """
@@ -26,6 +26,9 @@ Employee Birthday Tracker for Odoo 19 (Free / LGPL-3)
             'odoo_employee_birthday/static/src/css/birthday-dashboard.css',
             'odoo_employee_birthday/static/src/xml/birthday-dashboard.xml',
             'odoo_employee_birthday/static/src/js/birthday-dashboard.js',
+        ],
+        'web.assets_tests': [
+            'odoo_employee_birthday/static/tests/tours/*.js',
         ],
     },
     'installable': True,

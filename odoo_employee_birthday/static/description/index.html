@@ -3,455 +3,743 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Employee Birthday Tracker — Odoo 18</title>
+<title>Employee Birthday Tracker — Dashboard — Odoo 18</title>
 </head>
 <body>
 
 <!-- ============================================================
-     SECTION 1 — BRAND HEADER
+     BRAND BAR
      ============================================================ -->
-<section class="sh_counter_section position-relative" style="margin-top:20px; margin-bottom:15px; padding:50px 0 0 0">
-  <div class="container">
-    <div style="width:100%; background-color:#f5f3ff; padding:30px; border-radius:35px">
-
-      <!-- Logo + title row -->
-      <div class="row align-items-center mb-4">
-        <div class="col-lg-8 col-md-8 d-flex align-items-center gap-3">
-          <img src="icon.png" alt="Birthday Tracker Icon" style="width:72px; height:72px; border-radius:16px; box-shadow:0 4px 16px rgba(124,58,237,.25)">
-          <div>
-            <div style="font-size:26px; font-weight:800; color:#1e293b; letter-spacing:-.02em">Employee Birthday Tracker</div>
-            <div style="font-size:14px; color:#7c3aed; font-weight:600; margin-top:2px">by SunMesa Labs</div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-4 d-none d-md-flex justify-content-end align-items-center gap-2">
-          <span style="background:#7c3aed; color:#fff; padding:6px 16px; border-radius:20px; font-size:13px; font-weight:700">✓ Community</span>
-          <span style="background:#a855f7; color:#fff; padding:6px 16px; border-radius:20px; font-size:13px; font-weight:700">✓ Enterprise</span>
+<div class="container" style="padding-top:16px">
+  <div style="background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:16px 26px; margin:8px 0">
+    <div class="row justify-content-between align-items-center g-3">
+      <div class="col-lg-4 col-md-5 text-center text-md-start">
+        <div class="d-inline-flex align-items-center gap-3">
+          <img src="assets/sunmesa-logo.png" alt="SunMesa Labs" style="width:46px; height:46px; border-radius:12px">
+          <span style="font-size:22px; font-weight:800; color:#0b1220; letter-spacing:-.01em">SunMesa <span style="color:#0ea5c6">Labs</span></span>
         </div>
       </div>
-
-      <!-- KPI counter cards -->
-      <div class="row mt-2">
-        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 card-group">
-          <div class="w-100 shadow" style="padding:24px 20px; border-radius:12px; background-color:#fff; margin:10px 0">
-            <div class="d-flex align-items-center justify-content-between">
-              <div>
-                <div style="font-size:14px; color:#64748b; font-weight:600; margin-bottom:4px">Birthday Groups</div>
-                <div style="font-size:28px; font-weight:800; color:#7c3aed">4</div>
-              </div>
-              <div style="width:52px; height:52px; border-radius:50%; background:#ede9fe; display:flex; align-items:center; justify-content:center; font-size:24px">🎯</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 card-group">
-          <div class="w-100 shadow" style="padding:24px 20px; border-radius:12px; background-color:#fff; margin:10px 0">
-            <div class="d-flex align-items-center justify-content-between">
-              <div>
-                <div style="font-size:14px; color:#64748b; font-weight:600; margin-bottom:4px">Odoo Version</div>
-                <div style="font-size:28px; font-weight:800; color:#7c3aed">18.0</div>
-              </div>
-              <div style="width:52px; height:52px; border-radius:50%; background:#ede9fe; display:flex; align-items:center; justify-content:center; font-size:24px">⚡</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 card-group">
-          <div class="w-100 shadow" style="padding:24px 20px; border-radius:12px; background-color:#fff; margin:10px 0">
-            <div class="d-flex align-items-center justify-content-between">
-              <div>
-                <div style="font-size:14px; color:#64748b; font-weight:600; margin-bottom:4px">License</div>
-                <div style="font-size:28px; font-weight:800; color:#7c3aed">LGPL-3</div>
-              </div>
-              <div style="width:52px; height:52px; border-radius:50%; background:#ede9fe; display:flex; align-items:center; justify-content:center; font-size:24px">🔓</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 card-group">
-          <div class="w-100 shadow" style="padding:24px 20px; border-radius:12px; background-color:#fff; margin:10px 0">
-            <div class="d-flex align-items-center justify-content-between">
-              <div>
-                <div style="font-size:14px; color:#64748b; font-weight:600; margin-bottom:4px">Dependencies</div>
-                <div style="font-size:28px; font-weight:800; color:#7c3aed">hr, web</div>
-              </div>
-              <div style="width:52px; height:52px; border-radius:50%; background:#ede9fe; display:flex; align-items:center; justify-content:center; font-size:24px">📦</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- CTA + badges row -->
-      <div class="row justify-content-between align-items-center mt-2">
-        <div class="col-lg-6">
-          <a href="mailto:randy@sunmesalabs.com" style="text-decoration:none">
-            <div style="background:#7c3aed; color:#fff; padding:12px 24px; border-radius:50px; display:inline-flex; align-items:center; gap:10px; font-size:15px; font-weight:700">
-              <span class="fa fa-envelope"></span>
-              Contact / Support &nbsp;·&nbsp; randy@sunmesalabs.com
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-6 d-none d-lg-flex justify-content-end gap-2 align-items-center">
-          <span style="border:1px solid #7c3aed; color:#7c3aed; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:600">No Configuration Needed</span>
-          <span style="border:1px solid #7c3aed; color:#7c3aed; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:600">OWL 2 Dashboard</span>
-          <span style="border:1px solid #7c3aed; color:#7c3aed; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:600">Free Forever</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     SECTION 2 — MODULE DESCRIPTION
-     ============================================================ -->
-<section style="padding:60px 0 20px 0">
-  <div class="container">
-    <div class="text-center">
-      <h4 style="font-size:31px; font-weight:700; color:#1e293b; margin-bottom:10px">Employee Birthday Tracker</h4>
-      <div style="display:block; height:3px; width:80px; background:linear-gradient(90deg,#7c3aed,#db2777); margin:16px auto 32px auto; border-radius:4px"></div>
-      <p style="color:#475569; font-size:18px; max-width:700px; margin:0 auto; line-height:1.7">
-        Never miss an employee birthday again. A lightweight OWL 2 dashboard that groups birthdays by
-        <strong>Today</strong>, <strong>In 3 Days</strong>, <strong>In 7 Days</strong>, and <strong>In 15 Days</strong> —
-        with a monthly statistics bar chart and one-click filtered views. Install and run with zero configuration.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     SECTION 2b — PAIN POINTS & SOLUTION
-     ============================================================ -->
-<section style="padding:20px 0 50px 0; background-color:transparent">
-  <div class="container">
-
-    <div class="row g-4">
-
-      <!-- Pain Points -->
-      <div class="col-md-6">
-        <div style="background:#fff5f5; border:1.5px solid #fecaca; border-radius:16px; padding:32px; height:100%">
-          <div style="font-size:22px; font-weight:800; color:#dc2626; margin-bottom:20px; display:flex; align-items:center; gap:10px">
-            <span style="font-size:28px">😓</span> The Problem
-          </div>
-          <ul style="list-style:none; padding:0; margin:0">
-            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
-              <span style="color:#ef4444; font-size:18px; flex-shrink:0; margin-top:1px">✗</span>
-              <span style="color:#374151; font-size:15px; line-height:1.6">HR teams forget employee birthdays — awkward silences and missed culture moments hurt team morale.</span>
-            </li>
-            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
-              <span style="color:#ef4444; font-size:18px; flex-shrink:0; margin-top:1px">✗</span>
-              <span style="color:#374151; font-size:15px; line-height:1.6">Manually checking each employee profile in Odoo HR is slow and error-prone — impossible to do daily.</span>
-            </li>
-            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
-              <span style="color:#ef4444; font-size:18px; flex-shrink:0; margin-top:1px">✗</span>
-              <span style="color:#374151; font-size:15px; line-height:1.6">Spreadsheets and calendar reminders are disconnected from your Odoo data — always out of sync.</span>
-            </li>
-            <li style="display:flex; gap:12px; align-items:flex-start">
-              <span style="color:#ef4444; font-size:18px; flex-shrink:0; margin-top:1px">✗</span>
-              <span style="color:#374151; font-size:15px; line-height:1.6">No visibility on which months have the most birthdays — hard to plan gifts, cakes, or team events in advance.</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Solution -->
-      <div class="col-md-6">
-        <div style="background:#f0fdf4; border:1.5px solid #86efac; border-radius:16px; padding:32px; height:100%">
-          <div style="font-size:22px; font-weight:800; color:#16a34a; margin-bottom:20px; display:flex; align-items:center; gap:10px">
-            <span style="font-size:28px">🎯</span> The Solution
-          </div>
-          <ul style="list-style:none; padding:0; margin:0">
-            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
-              <span style="color:#22c55e; font-size:18px; flex-shrink:0; margin-top:1px">✓</span>
-              <span style="color:#374151; font-size:15px; line-height:1.6">One dashboard glance every morning — <strong>Today</strong>, <strong>3 Days</strong>, <strong>7 Days</strong>, <strong>15 Days</strong> KPIs always visible at a glance.</span>
-            </li>
-            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
-              <span style="color:#22c55e; font-size:18px; flex-shrink:0; margin-top:1px">✓</span>
-              <span style="color:#374151; font-size:15px; line-height:1.6">Live data directly from Odoo HR — always accurate, always up-to-date, no manual sync needed.</span>
-            </li>
-            <li style="display:flex; gap:12px; margin-bottom:16px; align-items:flex-start">
-              <span style="color:#22c55e; font-size:18px; flex-shrink:0; margin-top:1px">✓</span>
-              <span style="color:#374151; font-size:15px; line-height:1.6">Click any KPI card to open the filtered employee list instantly — take action in seconds, not minutes.</span>
-            </li>
-            <li style="display:flex; gap:12px; align-items:flex-start">
-              <span style="color:#22c55e; font-size:18px; flex-shrink:0; margin-top:1px">✓</span>
-              <span style="color:#374151; font-size:15px; line-height:1.6">Monthly bar chart shows upcoming busy months — plan gifts and team celebrations weeks in advance.</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     SECTION 2c — DEMO GIF
-     ============================================================ -->
-<section style="padding:10px 0 40px 0; background-color:transparent">
-  <div class="container">
-    <div class="col-md-12">
-      <img class="img-responsive rounded" style="width:100%; border:2px solid #7c3aed; border-radius:14px; box-shadow:0 8px 32px rgba(124,58,237,.18)" src="demo.gif" alt="Employee Birthday Tracker Demo">
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     SECTION 3 — FEATURES
-     ============================================================ -->
-<section style="padding:50px 0; background-color:transparent">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h4 style="font-size:28px; font-weight:700; color:#1e293b; margin-bottom:10px">Key Features</h4>
-      <div style="display:block; height:3px; width:60px; background:linear-gradient(90deg,#7c3aed,#db2777); margin:12px auto 0 auto; border-radius:4px"></div>
-    </div>
-    <div class="row g-3">
-
-      <div class="col-md-6">
-        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #7c3aed; border-radius:12px !important">
-          <div style="border:1px solid #7c3aed; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#f5f3ff">
-            <span style="font-size:28px">🎯</span>
-          </div>
-          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">4 Smart Birthday Groups: Today, In 3 Days, In 7 Days, In 15 Days — click any card to filter instantly.</span>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #7c3aed; border-radius:12px !important">
-          <div style="border:1px solid #7c3aed; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#f5f3ff">
-            <span style="font-size:28px">📊</span>
-          </div>
-          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">Monthly Statistics Bar Chart — birthday distribution across all 12 months with current month highlighted.</span>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #7c3aed; border-radius:12px !important">
-          <div style="border:1px solid #7c3aed; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#f5f3ff">
-            <span style="font-size:28px">🎂</span>
-          </div>
-          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">Upcoming 15-Day List — employee avatars, department, date, and color-coded urgency badges.</span>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #7c3aed; border-radius:12px !important">
-          <div style="border:1px solid #7c3aed; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#f5f3ff">
-            <span style="font-size:28px">⚡</span>
-          </div>
-          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">OWL 2 Powered — single JSON-RPC call loads everything. No page reload. Works out of the box on Odoo 18.</span>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #7c3aed; border-radius:12px !important">
-          <div style="border:1px solid #7c3aed; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#f5f3ff">
-            <span style="font-size:28px">🖱️</span>
-          </div>
-          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">One-Click Filtering — click any KPI card to open the filtered employee list with List and Form views.</span>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="p-4 shadow rounded h-100 d-flex align-items-center" style="border:1px solid #7c3aed; border-radius:12px !important">
-          <div style="border:1px solid #7c3aed; padding:10px; border-radius:8px; margin-right:20px; display:flex; min-width:60px; min-height:60px; align-items:center; justify-content:center; background:#f5f3ff">
-            <span style="font-size:28px">🔓</span>
-          </div>
-          <span style="font-size:16px; color:#1e293b; font-weight:600; letter-spacing:.5px">100% Free · LGPL-3 License — no paid tiers. Only requires the standard <code>hr</code> and <code>web</code> modules.</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     SECTION 4 — SETUP GUIDE WITH SCREENSHOTS
-     ============================================================ -->
-<section style="padding:50px 0; background-color:transparent">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h4 style="font-size:28px; font-weight:700; color:#1e293b; margin-bottom:10px">Setup Guide</h4>
-      <div style="display:block; height:3px; width:60px; background:linear-gradient(90deg,#7c3aed,#db2777); margin:12px auto 0 auto; border-radius:4px"></div>
-    </div>
-
-    <p style="color:#1e293b; font-size:18px; margin-bottom:20px; font-weight:600">
-      1) Place the <strong>odoo_employee_birthday</strong> folder in your Odoo custom addons directory and restart the server.
-    </p>
-
-    <p style="color:#1e293b; font-size:18px; margin-bottom:20px; font-weight:600">
-      2) Enable Developer Mode — go to <strong>Settings → Activate Developer Mode</strong>, then click <strong>Apps → Update Apps List</strong>.
-    </p>
-
-    <p style="color:#1e293b; font-size:18px; margin-bottom:20px; font-weight:600">
-      3) Search for <strong>"Birthday Tracker"</strong> in Apps and click <strong>Install</strong>. The 🎂 menu appears immediately after installation.
-    </p>
-
-    <p style="color:#1e293b; font-size:18px; margin-bottom:16px; font-weight:600">
-      4) Open the dashboard — you'll see 4 KPI cards, a Today's birthdays panel, and a monthly chart.
-    </p>
-    <div class="col-md-12">
-      <img class="img-responsive rounded" style="width:100%; border:1px solid #7c3aed; border-radius:12px" src="screenshots/01-dashboard.png" alt="Birthday Tracker Dashboard">
-    </div>
-    <p style="color:#64748b; font-size:14px; text-align:center; margin:10px 0 32px 0; font-style:italic">Main dashboard — 4 KPI cards, Today's birthdays panel, and monthly statistics chart</p>
-
-    <p style="color:#1e293b; font-size:18px; margin-bottom:16px; font-weight:600">
-      5) Scroll down to see the <strong>Upcoming — Next 15 Days</strong> list with urgency badges and the monthly bar chart.
-    </p>
-    <div class="col-md-12">
-      <img class="img-responsive rounded" style="width:100%; border:1px solid #7c3aed; border-radius:12px" src="screenshots/02-dashboard-upcoming.png" alt="Dashboard Upcoming List">
-    </div>
-    <p style="color:#64748b; font-size:14px; text-align:center; margin:10px 0 32px 0; font-style:italic">Upcoming birthdays with color-coded urgency badges and the monthly bar chart</p>
-
-    <p style="color:#1e293b; font-size:18px; margin-bottom:16px; font-weight:600">
-      6) Click any <strong>KPI card</strong> (Today / 3 Days / 7 Days / 15 Days) to open a filtered employee list instantly.
-    </p>
-    <div class="col-md-12">
-      <img class="img-responsive rounded" style="width:100%; border:1px solid #7c3aed; border-radius:12px" src="screenshots/04-today-filtered-list.png" alt="Filtered Today List">
-    </div>
-    <p style="color:#64748b; font-size:14px; text-align:center; margin:10px 0 32px 0; font-style:italic">Clicking "Today" card opens the filtered employee list instantly</p>
-
-    <p style="color:#1e293b; font-size:18px; margin-bottom:16px; font-weight:600">
-      7) The upcoming list shows each employee's avatar, department, birthday date (dd/mm), and a color-coded badge.
-    </p>
-    <div class="col-md-12">
-      <img class="img-responsive rounded" style="width:100%; border:1px solid #7c3aed; border-radius:12px" src="screenshots/03-upcoming-list.png" alt="Upcoming Birthdays">
-    </div>
-    <p style="color:#64748b; font-size:14px; text-align:center; margin:10px 0 32px 0; font-style:italic">Upcoming list sorted by days remaining — badge color changes by urgency level</p>
-
-    <p style="color:#1e293b; font-size:18px; margin-bottom:16px; font-weight:600">
-      8) Click <strong>View All →</strong> to see the complete birthday list for all employees.
-    </p>
-    <div class="col-md-12">
-      <img class="img-responsive rounded" style="width:100%; border:1px solid #7c3aed; border-radius:12px" src="screenshots/05-all-birthdays.png" alt="All Birthdays List">
-    </div>
-    <p style="color:#64748b; font-size:14px; text-align:center; margin:10px 0 32px 0; font-style:italic">All Birthdays list view — full employee list sorted by birthday date</p>
-
-    <p style="color:#1e293b; font-size:18px; margin-bottom:8px; font-weight:600">
-      9) Make sure each employee has a <strong>Date of Birth</strong> set in <strong>Employees → Private Information → Date of Birth</strong>.
-      Only employees with a birthday set will appear on the dashboard.
-    </p>
-
-  </div>
-</section>
-
-
-<!-- ============================================================
-     SECTION 5 — FAQ
-     ============================================================ -->
-<section style="padding:50px 0; background-color:transparent">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h4 style="font-size:28px; font-weight:700; color:#1e293b; margin-bottom:10px">Frequently Asked Questions</h4>
-      <div style="display:block; height:3px; width:60px; background:linear-gradient(90deg,#7c3aed,#db2777); margin:12px auto 0 auto; border-radius:4px"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="accordion" id="accordion_faq">
-
-          <div style="margin:1rem 0">
-            <div class="card-header" data-bs-toggle="collapse" data-bs-target="#faq1" style="background-color:#f8f8f8; border:none; border-radius:10px 10px 0 0; padding:14px 24px; cursor:pointer">
-              <a class="card-title text-decoration-none" style="font-size:17px; font-weight:600; color:#1e293b">Dashboard shows 0 for all groups — why?</a>
-            </div>
-            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#accordion_faq" style="border:1px solid #f8f8f8; border-radius:0 0 10px 10px">
-              <p style="padding:14px 24px; font-size:15px; color:#64748b; line-height:1.65; margin:0">
-                The dashboard only shows active employees who have a <strong>Date of Birth</strong> set. Go to
-                <strong>Employees → [Employee] → Private Information → Date of Birth</strong> and make sure the field is filled in.
-              </p>
-            </div>
-          </div>
-
-          <div style="margin:1rem 0">
-            <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#faq2" style="background-color:#f8f8f8; border:none; border-radius:10px 10px 0 0; padding:14px 24px; cursor:pointer">
-              <a class="card-title text-decoration-none" style="font-size:17px; font-weight:600; color:#1e293b">Does Today also count in the 3-day / 7-day group?</a>
-            </div>
-            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordion_faq" style="border:1px solid #f8f8f8; border-radius:0 0 10px 10px">
-              <p style="padding:14px 24px; font-size:15px; color:#64748b; line-height:1.65; margin:0">
-                No. The <strong>Today</strong> group (days = 0) is exclusive. The 3-day group covers days 1–3, the 7-day covers days 1–7, and the 15-day covers days 1–15. The 3-day group is a subset of the 7-day group.
-              </p>
-            </div>
-          </div>
-
-          <div style="margin:1rem 0">
-            <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#faq3" style="background-color:#f8f8f8; border:none; border-radius:10px 10px 0 0; padding:14px 24px; cursor:pointer">
-              <a class="card-title text-decoration-none" style="font-size:17px; font-weight:600; color:#1e293b">Does it handle February 29 birthdays correctly?</a>
-            </div>
-            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#accordion_faq" style="border:1px solid #f8f8f8; border-radius:0 0 10px 10px">
-              <p style="padding:14px 24px; font-size:15px; color:#64748b; line-height:1.65; margin:0">
-                Yes. In non-leap years, employees born on February 29 are treated as having their birthday on February 28. No errors or missed notifications.
-              </p>
-            </div>
-          </div>
-
-          <div style="margin:1rem 0">
-            <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#faq4" style="background-color:#f8f8f8; border:none; border-radius:10px 10px 0 0; padding:14px 24px; cursor:pointer">
-              <a class="card-title text-decoration-none" style="font-size:17px; font-weight:600; color:#1e293b">Is this compatible with Odoo Enterprise?</a>
-            </div>
-            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#accordion_faq" style="border:1px solid #f8f8f8; border-radius:0 0 10px 10px">
-              <p style="padding:14px 24px; font-size:15px; color:#64748b; line-height:1.65; margin:0">
-                Yes. The module only depends on <strong>hr</strong> and <strong>web</strong>, both available in Community and Enterprise. There are no conflicts with Enterprise modules.
-              </p>
-            </div>
-          </div>
-
-          <div style="margin:1rem 0">
-            <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#faq5" style="background-color:#f8f8f8; border:none; border-radius:10px 10px 0 0; padding:14px 24px; cursor:pointer">
-              <a class="card-title text-decoration-none" style="font-size:17px; font-weight:600; color:#1e293b">How do I uninstall the module safely?</a>
-            </div>
-            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#accordion_faq" style="border:1px solid #f8f8f8; border-radius:0 0 10px 10px">
-              <p style="padding:14px 24px; font-size:15px; color:#64748b; line-height:1.65; margin:0">
-                Go to <strong>Apps</strong>, search "Birthday Tracker", and click Uninstall. The module does not create any new database columns — it only uses the existing <code>birthday</code> field from <code>hr.employee</code>, so uninstalling is completely safe.
-              </p>
-            </div>
-          </div>
-
+      <div class="col-lg-8 col-md-7">
+        <div class="text-center text-md-end">
+          <div style="margin-bottom:6px"><span style="font-weight:700; color:#334155; margin-right:6px">Odoo versions</span><span style="display:inline-block; padding:6px 14px; border-radius:30px; font-weight:700; font-size:.9rem; margin:2px; background-color:#fff; color:#475569; border:1px solid #e2e8f0">17.0</span><span style="display:inline-block; padding:6px 14px; border-radius:30px; font-weight:700; font-size:.9rem; margin:2px; background-color:#0b1220; color:#22d3ee; border:1px solid #0b1220">18.0</span><span style="display:inline-block; padding:6px 14px; border-radius:30px; font-weight:700; font-size:.9rem; margin:2px; background-color:#fff; color:#475569; border:1px solid #e2e8f0">19.0</span></div>
+          <div><span style="font-weight:700; color:#334155; margin-right:6px">Available on</span><span style="display:inline-block; padding:6px 14px; border-radius:30px; font-weight:600; font-size:.88rem; margin:2px; background-color:#ecfdf3; border:1px solid #bbf7d0; color:#15803d">✓ Community</span><span style="display:inline-block; padding:6px 14px; border-radius:30px; font-weight:600; font-size:.88rem; margin:2px; background-color:#ecfdf3; border:1px solid #bbf7d0; color:#15803d">✓ Enterprise</span><span style="display:inline-block; padding:6px 14px; border-radius:30px; font-weight:600; font-size:.88rem; margin:2px; background-color:#ecfdf3; border:1px solid #bbf7d0; color:#15803d">✓ Odoo.sh</span><span style="display:inline-block; padding:6px 14px; border-radius:30px; font-weight:600; font-size:.88rem; margin:2px; background-color:#fef2f2; border:1px solid #fecaca; color:#b91c1c">✗ Odoo Online</span></div>
         </div>
       </div>
     </div>
   </div>
-</section>
-
+</div>
 
 <!-- ============================================================
-     SECTION 6 — SUPPORT
+     HERO
      ============================================================ -->
-<section style="padding:40px 0 60px 0; background-color:transparent">
-  <div class="container">
-    <div class="text-center mb-5">
-      <h4 style="font-size:28px; font-weight:700; color:#1e293b; margin-bottom:10px">Support</h4>
-      <div style="display:block; height:3px; width:60px; background:linear-gradient(90deg,#7c3aed,#db2777); margin:12px auto 0 auto; border-radius:4px"></div>
-    </div>
-    <div class="row">
-      <div class="col-md-8 mx-auto">
-        <ul style="padding:0; list-style:none">
-          <li class="border rounded" style="padding:24px; margin-bottom:16px; border-color:#7c3aed !important; border-radius:12px">
-            <a href="mailto:randy@sunmesalabs.com" style="text-decoration:none; color:#1e293b; font-size:17px; font-weight:600; display:flex; align-items:center; gap:12px">
-              <span class="fa fa-envelope" style="color:#7c3aed; font-size:22px"></span>
-              Email support: <strong style="color:#7c3aed">randy@sunmesalabs.com</strong>
-            </a>
+<div class="container text-center" style="padding-top:34px; padding-bottom:6px">
+  <div><span style="display:inline-block; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#0ea5c6; font-weight:800; margin-bottom:12px">Human Resources · Employees · Odoo 18.0</span></div>
+  <h3 style="font-size:2.6rem; font-weight:800; color:#0f172a; letter-spacing:-.02em; margin:0 0 14px; line-height:1.15">Employee Birthday <span style="color:#0ea5c6">Tracker</span></h3>
+  <p style="color:#475569; font-size:18px; max-width:760px; margin:0 auto 24px; line-height:1.7">
+    A <b>birthday dashboard</b> for HR: who celebrates today, in 3, 7 and 15 days, a list of the next birthdays
+    with a countdown and a <b>month-by-month chart</b> — straight from the Date of Birth already on your employees.
+  </p>
+  <div>
+    <a href="mailto:randy@sunmesalabs.com" style="display:inline-block; padding:14px 28px; border-radius:50px; font-size:15px; font-weight:700; text-decoration:none; background-color:#0b1220; color:#fff; margin:4px">✉ Email us</a>
+    <a href="https://apps.odoo.com/apps/modules/browse?author=SunMesa%20Labs" style="display:inline-block; padding:14px 28px; border-radius:50px; font-size:15px; font-weight:700; text-decoration:none; background-color:#22d3ee; color:#0b1220; margin:4px">See all SunMesa Labs apps →</a>
+  </div>
+  <div style="display:inline-block; margin-top:24px; padding:9px 22px; background-color:#fffbeb; border:1.5px solid #fde68a; border-radius:50px">
+    <span style="color:#0b1220; font-weight:800">Free</span>
+    <span style="color:#e5c97a; margin:0 8px">|</span>
+    <span style="color:#92400e; font-weight:600">No configuration · Only needs Employees · Community &amp; Enterprise</span>
+  </div>
+</div>
+
+<!-- ============================================================
+     PROBLEM / SOLUTION
+     ============================================================ -->
+<div class="container" style="padding-top:40px">
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div style="height:100%; background-color:#fff5f5; border:1.5px solid #fecaca; border-radius:18px; padding:30px">
+        <div style="font-size:22px; font-weight:800; color:#b91c1c; margin-bottom:18px"><span style="font-size:28px; margin-right:8px">😓</span>The Problem</div>
+        <ul class="list-unstyled" style="padding:0; margin:0">
+          <li class="d-flex gap-2 align-items-start" style="margin-bottom:14px">
+            <span class="flex-shrink-0" style="color:#ef4444; font-size:18px; font-weight:800; line-height:1.4; width:20px">✗</span>
+            <span style="color:#334155; font-size:15px; line-height:1.6">Birthdays are stored on each employee but standard Odoo has no view of who celebrates today or this week.</span>
           </li>
-          <li class="border rounded" style="padding:24px; margin-bottom:16px; border-color:#7c3aed !important; border-radius:12px">
-            <div style="font-size:16px; color:#475569; line-height:1.65">
-              <strong style="color:#1e293b">Response time:</strong> We aim to respond within 1–2 business days.
-              Please include your Odoo version and a description of the issue.
-            </div>
+          <li class="d-flex gap-2 align-items-start" style="margin-bottom:14px">
+            <span class="flex-shrink-0" style="color:#ef4444; font-size:18px; font-weight:800; line-height:1.4; width:20px">✗</span>
+            <span style="color:#334155; font-size:15px; line-height:1.6">HR finds out about a birthday on the day itself — too late for a card, a cake or a message from the team.</span>
           </li>
-          <li class="border rounded" style="padding:24px; border-color:#7c3aed !important; border-radius:12px">
-            <div style="font-size:16px; color:#475569; line-height:1.65">
-              <strong style="color:#1e293b">Source code:</strong> LGPL-3 — free to use, modify, and redistribute.
-              Available on GitHub:
-              <a href="https://github.com/RandyNguyenN/odoo_employee_birthday" style="color:#7c3aed; font-weight:600">
-                github.com/RandyNguyenN/odoo_employee_birthday
-              </a>
-            </div>
+          <li class="d-flex gap-2 align-items-start" style="margin-bottom:14px">
+            <span class="flex-shrink-0" style="color:#ef4444; font-size:18px; font-weight:800; line-height:1.4; width:20px">✗</span>
+            <span style="color:#334155; font-size:15px; line-height:1.6">Sorting employees by date of birth sorts by year, not by the next upcoming birthday.</span>
+          </li>
+          <li class="d-flex gap-2 align-items-start" style="margin-bottom:14px">
+            <span class="flex-shrink-0" style="color:#ef4444; font-size:18px; font-weight:800; line-height:1.4; width:20px">✗</span>
+            <span style="color:#334155; font-size:15px; line-height:1.6">Keeping a separate birthday spreadsheet means the list is always out of date.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div style="height:100%; background-color:#ecfeff; border:1.5px solid #a5f3fc; border-radius:18px; padding:30px">
+        <div style="font-size:22px; font-weight:800; color:#0ea5c6; margin-bottom:18px"><span style="font-size:28px; margin-right:8px">🎯</span>The Solution</div>
+        <ul class="list-unstyled" style="padding:0; margin:0">
+          <li class="d-flex gap-2 align-items-start" style="margin-bottom:14px">
+            <span class="flex-shrink-0" style="color:#0ea5c6; font-size:18px; font-weight:800; line-height:1.4; width:20px">✓</span>
+            <span style="color:#334155; font-size:15px; line-height:1.6"><b>Four KPI cards</b> — Today, In 3 Days, In 7 Days and In 15 Days, counted from the Date of Birth.</span>
+          </li>
+          <li class="d-flex gap-2 align-items-start" style="margin-bottom:14px">
+            <span class="flex-shrink-0" style="color:#0ea5c6; font-size:18px; font-weight:800; line-height:1.4; width:20px">✓</span>
+            <span style="color:#334155; font-size:15px; line-height:1.6"><b>Click a card</b> to open the matching employees in a standard list.</span>
+          </li>
+          <li class="d-flex gap-2 align-items-start" style="margin-bottom:14px">
+            <span class="flex-shrink-0" style="color:#0ea5c6; font-size:18px; font-weight:800; line-height:1.4; width:20px">✓</span>
+            <span style="color:#334155; font-size:15px; line-height:1.6"><b>Upcoming list</b> — the next birthdays sorted by days remaining, with coloured "in Xd" badges.</span>
+          </li>
+          <li class="d-flex gap-2 align-items-start" style="margin-bottom:14px">
+            <span class="flex-shrink-0" style="color:#0ea5c6; font-size:18px; font-weight:800; line-height:1.4; width:20px">✓</span>
+            <span style="color:#334155; font-size:15px; line-height:1.6"><b>Monthly chart</b> — birthdays per month, with the current month highlighted.</span>
           </li>
         </ul>
       </div>
     </div>
   </div>
-</section>
+</div>
+
+<div class="container" style="padding-top:26px">
+  <div class="shadow-lg" style="border-radius:20px; padding:10px; background-color:#0b1220">
+    <img src="demo.gif" alt="Employee Birthday Tracker — Dashboard demo" style="width:100%; height:auto; display:block; border-radius:14px">
+  </div>
+</div>
+
+<!-- ============================================================
+     GUIDE + SUPPORT CARDS
+     ============================================================ -->
+<div class="container" style="padding-top:40px">
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div style="height:100%; background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:30px">
+        <div style="width:58px; height:58px; border-radius:15px; background-color:#0b1220; text-align:center; line-height:58px; font-size:26px; margin-bottom:18px">📘</div>
+        <h3 style="font-size:1.4rem; font-weight:800; color:#0f172a; margin:0 0 8px">See it in 30 seconds</h3>
+        <p style="color:#475569; font-size:15px; line-height:1.6; margin:0 0 18px">Screenshots, every feature and the FAQ — all on this page.</p>
+        <a href="#ebd-explore" style="display:inline-block; padding:11px 24px; border-radius:50px; font-weight:700; font-size:14px; text-decoration:none; background-color:#22d3ee; color:#0b1220">Explore features ↓</a>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div style="height:100%; background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:30px">
+        <div style="width:58px; height:58px; border-radius:15px; background-color:#0b1220; text-align:center; line-height:58px; font-size:26px; margin-bottom:18px">🛟</div>
+        <h3 style="font-size:1.4rem; font-weight:800; color:#0f172a; margin:0 0 8px">Get help from the author</h3>
+        <p style="color:#475569; font-size:15px; line-height:1.6; margin:0 0 18px">Questions or a special need? Write to us, we answer within 1–2 business days.</p>
+        <a href="mailto:randy@sunmesalabs.com" style="display:inline-block; padding:11px 24px; border-radius:50px; font-weight:700; font-size:14px; text-decoration:none; background-color:#0b1220; color:#fff">Contact support</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     EXPLORE FEATURES (tabs)
+     ============================================================ -->
+<div class="container" id="ebd-explore" style="max-width:1200px; margin:56px auto 30px; padding:0 16px">
+  
+      <div style="text-align:center; margin-bottom:28px">
+        <h2 style="font-size:2.1rem; font-weight:800; color:#0f172a; margin:0; letter-spacing:-.01em">Explore Features <span style="color:#0ea5c6">In Detail</span></h2>
+        <div style="width:66px; height:4px; background-color:#22d3ee; border-radius:3px; margin:16px auto 8px"></div>
+      </div>
+  
+        <ul class="nav nav-pills justify-content-center flex-wrap pb-3" role="tablist">
+          <li class="nav-item" role="presentation"><a class="nav-link active" data-bs-toggle="pill" data-bs-target="#ebd-feat-dash" type="button" role="tab" style="width:max-content; border-radius:50px; margin:0 5px 8px; padding:11px 22px; font-weight:700; border:2px solid #e2e8f0">Dashboard</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" data-bs-toggle="pill" data-bs-target="#ebd-feat-upcoming" type="button" role="tab" style="width:max-content; border-radius:50px; margin:0 5px 8px; padding:11px 22px; font-weight:700; border:2px solid #e2e8f0">Upcoming &amp; Chart</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" data-bs-toggle="pill" data-bs-target="#ebd-feat-data" type="button" role="tab" style="width:max-content; border-radius:50px; margin:0 5px 8px; padding:11px 22px; font-weight:700; border:2px solid #e2e8f0">Data &amp; Accuracy</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="ebd-feat-dash" role="tabpanel">
+      <div style="text-align:center; margin-bottom:28px">
+        <h3 style="font-size:1.55rem; font-weight:800; color:#0f172a; margin:0; letter-spacing:-.01em">Dashboard <span style="color:#0ea5c6"></span></h3>
+        <div style="width:66px; height:4px; background-color:#22d3ee; border-radius:3px; margin:16px auto 8px"></div>
+      </div>
+          <div class="row">
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">01</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Today / 3 / 7 / 15 days</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Four cards count the birthdays today and within the next 3, 7 and 15 days.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">02</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Click to drill down</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Each card opens the list of those employees; an empty group just shows a short notice.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">03</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Today's birthdays</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Photo, name and department of everyone celebrating today.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">04</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Own menu</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">A <b>Birthday Tracker</b> app with Dashboard and All Birthdays menus.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+          <div class="tab-pane fade" id="ebd-feat-upcoming" role="tabpanel">
+      <div style="text-align:center; margin-bottom:28px">
+        <h3 style="font-size:1.55rem; font-weight:800; color:#0f172a; margin:0; letter-spacing:-.01em">Upcoming <span style="color:#0ea5c6">&amp; Chart</span></h3>
+        <div style="width:66px; height:4px; background-color:#22d3ee; border-radius:3px; margin:16px auto 8px"></div>
+      </div>
+          <div class="row">
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">01</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Next 15 days</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">The nearest birthdays (up to 10) with photo, department and day / month.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">02</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Countdown badges</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">"in 3d", "in 5d", "in 10d" — amber up to 3 days, purple up to 7, teal beyond.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">03</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Birthdays by month</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">A bar chart with the number of birthdays in each month of the year.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">04</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Current month highlighted</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">The bar of the current month stands out, with its name in the header.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+          <div class="tab-pane fade" id="ebd-feat-data" role="tabpanel">
+      <div style="text-align:center; margin-bottom:28px">
+        <h3 style="font-size:1.55rem; font-weight:800; color:#0f172a; margin:0; letter-spacing:-.01em">Data <span style="color:#0ea5c6">&amp; Accuracy</span></h3>
+        <div style="width:66px; height:4px; background-color:#22d3ee; border-radius:3px; margin:16px auto 8px"></div>
+      </div>
+          <div class="row">
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">01</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Uses Date of Birth</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Reads the standard Date of Birth field — nothing new to fill in.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">02</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Active employees only</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Archived employees and employees without a Date of Birth are left out.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">03</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Leap-year safe</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">A 29 February birthday is counted on 28 February in other years.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">04</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Always up to date</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Counts are calculated each time the dashboard opens — no scheduled job.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+</div>
+
+<!-- ============================================================
+     KEY HIGHLIGHTS
+     ============================================================ -->
+<div class="container" style="padding-top:20px; padding-bottom:20px">
+  
+      <div style="text-align:center; margin-bottom:28px">
+        <h2 style="font-size:2.1rem; font-weight:800; color:#0f172a; margin:0; letter-spacing:-.01em">Key <span style="color:#0ea5c6">Highlights</span></h2>
+        <div style="width:66px; height:4px; background-color:#22d3ee; border-radius:3px; margin:16px auto 8px"></div>
+      </div>
+  <div class="row">
+          <div class="col-md-4" style="margin-bottom:20px">
+            <div class="h-100 shadow-sm" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:26px 24px">
+              <div style="width:56px; height:56px; border-radius:14px; text-align:center; line-height:56px; font-size:26px; background-color:#ecfeff; border:1px solid #a5f3fc; margin-bottom:16px">🎂</div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; margin:0 0 8px">Today at a glance</h3>
+              <div style="font-size:14.5px; color:#475569; line-height:1.6">Who celebrates today, with photo and department.</div>
+            </div>
+          </div>
+          <div class="col-md-4" style="margin-bottom:20px">
+            <div class="h-100 shadow-sm" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:26px 24px">
+              <div style="width:56px; height:56px; border-radius:14px; text-align:center; line-height:56px; font-size:26px; background-color:#ecfeff; border:1px solid #a5f3fc; margin-bottom:16px">⏰</div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; margin:0 0 8px">3 / 7 / 15 days</h3>
+              <div style="font-size:14.5px; color:#475569; line-height:1.6">Know in advance — plan a card, a cake or a message.</div>
+            </div>
+          </div>
+          <div class="col-md-4" style="margin-bottom:20px">
+            <div class="h-100 shadow-sm" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:26px 24px">
+              <div style="width:56px; height:56px; border-radius:14px; text-align:center; line-height:56px; font-size:26px; background-color:#ecfeff; border:1px solid #a5f3fc; margin-bottom:16px">🖱️</div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; margin:0 0 8px">Clickable cards</h3>
+              <div style="font-size:14.5px; color:#475569; line-height:1.6">One click opens the matching employees.</div>
+            </div>
+          </div>
+          <div class="col-md-4" style="margin-bottom:20px">
+            <div class="h-100 shadow-sm" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:26px 24px">
+              <div style="width:56px; height:56px; border-radius:14px; text-align:center; line-height:56px; font-size:26px; background-color:#ecfeff; border:1px solid #a5f3fc; margin-bottom:16px">📋</div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; margin:0 0 8px">Countdown list</h3>
+              <div style="font-size:14.5px; color:#475569; line-height:1.6">Upcoming birthdays sorted by days remaining.</div>
+            </div>
+          </div>
+          <div class="col-md-4" style="margin-bottom:20px">
+            <div class="h-100 shadow-sm" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:26px 24px">
+              <div style="width:56px; height:56px; border-radius:14px; text-align:center; line-height:56px; font-size:26px; background-color:#ecfeff; border:1px solid #a5f3fc; margin-bottom:16px">📊</div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; margin:0 0 8px">Monthly chart</h3>
+              <div style="font-size:14.5px; color:#475569; line-height:1.6">Birthdays per month, current month highlighted.</div>
+            </div>
+          </div>
+          <div class="col-md-4" style="margin-bottom:20px">
+            <div class="h-100 shadow-sm" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:26px 24px">
+              <div style="width:56px; height:56px; border-radius:14px; text-align:center; line-height:56px; font-size:26px; background-color:#ecfeff; border:1px solid #a5f3fc; margin-bottom:16px">🪶</div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; margin:0 0 8px">Lightweight</h3>
+              <div style="font-size:14.5px; color:#475569; line-height:1.6">Only needs Employees; no new data to enter, no configuration.</div>
+            </div>
+          </div>
+        </div>
+</div>
+
+<!-- ============================================================
+     SCREENSHOTS / FEATURES / FAQ / RELEASE (tabs)
+     ============================================================ -->
+<div class="container" style="padding-top:30px; padding-bottom:30px">
+  
+        <ul class="nav nav-pills justify-content-start justify-content-md-center flex-wrap pb-3" role="tablist">
+          <li class="nav-item" role="presentation"><a class="nav-link active" data-bs-toggle="pill" data-bs-target="#ebd-main-screens" type="button" role="tab" style="width:max-content; border-radius:50px; margin:0 5px 8px; padding:12px 24px; font-weight:700; border:2px solid #e2e8f0">Screenshots</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" data-bs-toggle="pill" data-bs-target="#ebd-main-features" type="button" role="tab" style="width:max-content; border-radius:50px; margin:0 5px 8px; padding:12px 24px; font-weight:700; border:2px solid #e2e8f0">Features</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" data-bs-toggle="pill" data-bs-target="#ebd-main-faq" type="button" role="tab" style="width:max-content; border-radius:50px; margin:0 5px 8px; padding:12px 24px; font-weight:700; border:2px solid #e2e8f0">FAQ</a></li>
+          <li class="nav-item" role="presentation"><a class="nav-link" data-bs-toggle="pill" data-bs-target="#ebd-main-release" type="button" role="tab" style="width:max-content; border-radius:50px; margin:0 5px 8px; padding:12px 24px; font-weight:700; border:2px solid #e2e8f0">Latest Release</a></li>
+        </ul>
+        <div class="tab-content" style="background-color:#fff; border:2px solid #e2e8f0; border-radius:18px">
+          <div class="tab-pane fade show active" id="ebd-main-screens" role="tabpanel">
+          <div style="padding:28px 18px 18px">
+      <div style="text-align:center; margin-bottom:28px">
+        <h2 style="font-size:2rem; font-weight:800; color:#0f172a; margin:0; letter-spacing:-.01em">App <span style="color:#0ea5c6">Screenshots</span></h2>
+        <div style="width:66px; height:4px; background-color:#22d3ee; border-radius:3px; margin:16px auto 8px"></div>
+      </div>
+          <div class="row">
+            <div class="col-lg-3" style="margin-bottom:16px">
+              <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" data-bs-toggle="pill" data-bs-target="#ebd-shot-dash" type="button" role="tab" style="display:block; text-align:left; border:1px solid #e2e8f0; border-radius:12px; margin-bottom:6px; padding:12px 15px; font-weight:700">Birthday dashboard</a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#ebd-shot-upcoming" type="button" role="tab" style="display:block; text-align:left; border:1px solid #e2e8f0; border-radius:12px; margin-bottom:6px; padding:12px 15px; font-weight:700">Upcoming — next 15 days</a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#ebd-shot-today" type="button" role="tab" style="display:block; text-align:left; border:1px solid #e2e8f0; border-radius:12px; margin-bottom:6px; padding:12px 15px; font-weight:700">Click a card</a>
+                <a class="nav-link" data-bs-toggle="pill" data-bs-target="#ebd-shot-all" type="button" role="tab" style="display:block; text-align:left; border:1px solid #e2e8f0; border-radius:12px; margin-bottom:6px; padding:12px 15px; font-weight:700">All birthdays</a>
+              </div>
+            </div>
+            <div class="col-lg-9">
+              <div class="tab-content">
+                <div class="tab-pane fade show active" id="ebd-shot-dash" role="tabpanel">
+            <h3 style="font-size:1.1rem; font-weight:700; color:#0f172a; margin:22px 0 10px">Birthday dashboard</h3>
+            <div class="overflow-hidden" style="border:1px solid #e2e8f0; border-radius:14px; margin-bottom:6px">
+              <img src="screenshots/01-dashboard.png" alt="Birthday dashboard" style="width:100%; height:auto; display:block">
+            </div>
+            <p style="color:#94a3b8; font-size:13.5px; margin:6px 0 0">Today / In 3 Days / In 7 Days / In 15 Days cards, today's birthdays and the birthdays-by-month chart.</p>
+                </div>
+                <div class="tab-pane fade" id="ebd-shot-upcoming" role="tabpanel">
+            <h3 style="font-size:1.1rem; font-weight:700; color:#0f172a; margin:22px 0 10px">Upcoming — next 15 days</h3>
+            <div class="overflow-hidden" style="border:1px solid #e2e8f0; border-radius:14px; margin-bottom:6px">
+              <img src="screenshots/03-upcoming-list.png" alt="Upcoming — next 15 days" style="width:100%; height:auto; display:block">
+            </div>
+            <p style="color:#94a3b8; font-size:13.5px; margin:6px 0 0">The next birthdays sorted by days remaining, with day / month and an "in Xd" badge.</p>
+                </div>
+                <div class="tab-pane fade" id="ebd-shot-today" role="tabpanel">
+            <h3 style="font-size:1.1rem; font-weight:700; color:#0f172a; margin:22px 0 10px">Click a card</h3>
+            <div class="overflow-hidden" style="border:1px solid #e2e8f0; border-radius:14px; margin-bottom:6px">
+              <img src="screenshots/04-today-filtered-list.png" alt="Click a card" style="width:100%; height:auto; display:block">
+            </div>
+            <p style="color:#94a3b8; font-size:13.5px; margin:6px 0 0">Clicking the Today card opens the list of employees whose birthday is today.</p>
+                </div>
+                <div class="tab-pane fade" id="ebd-shot-all" role="tabpanel">
+            <h3 style="font-size:1.1rem; font-weight:700; color:#0f172a; margin:22px 0 10px">All birthdays</h3>
+            <div class="overflow-hidden" style="border:1px solid #e2e8f0; border-radius:14px; margin-bottom:6px">
+              <img src="screenshots/05-all-birthdays.png" alt="All birthdays" style="width:100%; height:auto; display:block">
+            </div>
+            <p style="color:#94a3b8; font-size:13.5px; margin:6px 0 0">Birthday Tracker → All Birthdays — every active employee with a Date of Birth.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+          <div class="tab-pane fade" id="ebd-main-features" role="tabpanel">
+          <div style="padding:28px 18px 18px">
+      <div style="text-align:center; margin-bottom:28px">
+        <h2 style="font-size:2rem; font-weight:800; color:#0f172a; margin:0; letter-spacing:-.01em">Detailed <span style="color:#0ea5c6">Features</span></h2>
+        <div style="width:66px; height:4px; background-color:#22d3ee; border-radius:3px; margin:16px auto 8px"></div>
+      </div>
+          <div class="row">
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">01</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Today / 3 / 7 / 15 days</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Four cards count the birthdays today and within the next 3, 7 and 15 days.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">02</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Click to drill down</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Each card opens the list of those employees; an empty group just shows a short notice.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">03</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Today's birthdays</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Photo, name and department of everyone celebrating today.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">04</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Own menu</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">A <b>Birthday Tracker</b> app with Dashboard and All Birthdays menus.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">05</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Next 15 days</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">The nearest birthdays (up to 10) with photo, department and day / month.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">06</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Countdown badges</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">"in 3d", "in 5d", "in 10d" — amber up to 3 days, purple up to 7, teal beyond.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">07</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Birthdays by month</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">A bar chart with the number of birthdays in each month of the year.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">08</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Current month highlighted</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">The bar of the current month stands out, with its name in the header.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">09</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Uses Date of Birth</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Reads the standard Date of Birth field — nothing new to fill in.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">10</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Active employees only</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Archived employees and employees without a Date of Birth are left out.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">11</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Leap-year safe</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">A 29 February birthday is counted on 28 February in other years.</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" style="margin-bottom:16px">
+            <div class="h-100 d-flex gap-3" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:16px; padding:20px 22px">
+              <span class="flex-shrink-0" style="display:inline-block; width:36px; height:36px; border-radius:10px; background-color:#0b1220; color:#22d3ee; font-weight:800; font-size:14px; text-align:center; line-height:36px">12</span>
+              <div>
+                <div style="font-size:16px; font-weight:700; color:#0f172a; margin:0 0 4px">Always up to date</div>
+                <div style="font-size:14px; color:#475569; line-height:1.55">Counts are calculated each time the dashboard opens — no scheduled job.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+          </div>
+          </div>
+          <div class="tab-pane fade" id="ebd-main-faq" role="tabpanel">
+          <div style="padding:28px 18px 18px">
+      <div style="text-align:center; margin-bottom:28px">
+        <h2 style="font-size:2rem; font-weight:800; color:#0f172a; margin:0; letter-spacing:-.01em">Frequently Asked <span style="color:#0ea5c6">Questions</span></h2>
+        <div style="width:66px; height:4px; background-color:#22d3ee; border-radius:3px; margin:16px auto 8px"></div>
+      </div>
+          <div style="max-width:900px; margin:0 auto">
+            <details style="background-color:#fff; border:1px solid #e2e8f0; border-radius:14px; margin-bottom:14px; padding:2px 8px" open>
+              <summary style="padding:16px 14px; font-weight:700; font-size:1.05rem; color:#0f172a">Where do the birthdays come from?</summary>
+              <div style="padding:0 14px 18px; color:#475569; font-size:15px; line-height:1.65">From the standard <b>Date of Birth</b> field on the employee (Private Information tab). Fill it in and the employee appears on the dashboard.</div>
+            </details>
+            <details style="background-color:#fff; border:1px solid #e2e8f0; border-radius:14px; margin-bottom:14px; padding:2px 8px">
+              <summary style="padding:16px 14px; font-weight:700; font-size:1.05rem; color:#0f172a">Is "In 7 Days" including "In 3 Days"?</summary>
+              <div style="padding:0 14px 18px; color:#475569; font-size:15px; line-height:1.65">Yes. The 3, 7 and 15 day cards each count every birthday from tomorrow up to that number of days, so a birthday in 2 days is in all three. Today's birthdays are only in the Today card.</div>
+            </details>
+            <details style="background-color:#fff; border:1px solid #e2e8f0; border-radius:14px; margin-bottom:14px; padding:2px 8px">
+              <summary style="padding:16px 14px; font-weight:700; font-size:1.05rem; color:#0f172a">Who can open the dashboard?</summary>
+              <div style="padding:0 14px 18px; color:#475569; font-size:15px; line-height:1.65">Odoo keeps the Date of Birth private to users with Employees access (Officer or Administrator), so the dashboard is meant for your HR team.</div>
+            </details>
+            <details style="background-color:#fff; border:1px solid #e2e8f0; border-radius:14px; margin-bottom:14px; padding:2px 8px">
+              <summary style="padding:16px 14px; font-weight:700; font-size:1.05rem; color:#0f172a">What about employees born on 29 February?</summary>
+              <div style="padding:0 14px 18px; color:#475569; font-size:15px; line-height:1.65">In years without a 29 February their birthday is counted on 28 February.</div>
+            </details>
+            <details style="background-color:#fff; border:1px solid #e2e8f0; border-radius:14px; margin-bottom:14px; padding:2px 8px">
+              <summary style="padding:16px 14px; font-weight:700; font-size:1.05rem; color:#0f172a">Does it send birthday e-mails?</summary>
+              <div style="padding:0 14px 18px; color:#475569; font-size:15px; line-height:1.65">No. The app is a dashboard and list for HR; it does not send messages or change employee data.</div>
+            </details>
+            <details style="background-color:#fff; border:1px solid #e2e8f0; border-radius:14px; margin-bottom:14px; padding:2px 8px">
+              <summary style="padding:16px 14px; font-weight:700; font-size:1.05rem; color:#0f172a">Does it need Odoo Enterprise?</summary>
+              <div style="padding:0 14px 18px; color:#475569; font-size:15px; line-height:1.65">No. It works on Community and Enterprise and only depends on the Employees app.</div>
+            </details>
+          </div>
+          </div>
+          </div>
+          <div class="tab-pane fade" id="ebd-main-release" role="tabpanel">
+          <div style="padding:28px 18px 18px">
+      <div style="text-align:center; margin-bottom:28px">
+        <h2 style="font-size:2rem; font-weight:800; color:#0f172a; margin:0; letter-spacing:-.01em">Latest <span style="color:#0ea5c6">Release</span></h2>
+        <div style="width:66px; height:4px; background-color:#22d3ee; border-radius:3px; margin:16px auto 8px"></div>
+      </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6" style="margin-bottom:16px">
+              <div style="height:100%; padding:28px; border:2px solid #a5f3fc; border-radius:16px; background-color:#fff">
+                <div class="d-flex align-items-center flex-wrap gap-3" style="margin-bottom:14px">
+                  <span style="font-size:1.25rem; font-weight:800; color:#0f172a">18.0.1.0.0</span>
+                  <span style="padding:4px 12px; border-radius:20px; font-size:.75rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; background-color:#dcfce7; color:#15803d">Add</span>
+                  <span style="color:#94a3b8; font-size:.875rem; font-weight:600">📅 27 May 2026</span>
+                </div>
+                <div style="border-radius:10px; padding:16px 18px; background-color:#f8fafc; color:#475569; line-height:1.6; font-size:.95rem">
+                  First release: birthday dashboard with Today / 3 / 7 / 15 day cards, upcoming list, monthly chart and All Birthdays list.
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          </div>
+        </div>
+</div>
+
+<!-- ============================================================
+     WHY SUNMESA LABS
+     ============================================================ -->
+<div class="container" style="padding-top:30px; padding-bottom:10px">
+  
+      <div style="text-align:center; margin-bottom:28px">
+        <h2 style="font-size:2.1rem; font-weight:800; color:#0f172a; margin:0; letter-spacing:-.01em">Why <span style="color:#0ea5c6">SunMesa Labs</span></h2>
+        <div style="width:66px; height:4px; background-color:#22d3ee; border-radius:3px; margin:16px auto 8px"></div>
+      </div>
+  <div class="row">
+          <div class="col-lg-3 col-md-6" style="margin-bottom:20px">
+            <div class="h-100 shadow-sm" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:26px 24px">
+              <div style="width:56px; height:56px; border-radius:14px; text-align:center; line-height:56px; font-size:26px; background-color:#ecfeff; border:1px solid #a5f3fc; margin-bottom:16px">💳</div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; margin:0 0 8px">One-time price</h3>
+              <div style="font-size:14.5px; color:#475569; line-height:1.6">Pay once, use it forever on your database. No subscription.</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" style="margin-bottom:20px">
+            <div class="h-100 shadow-sm" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:26px 24px">
+              <div style="width:56px; height:56px; border-radius:14px; text-align:center; line-height:56px; font-size:26px; background-color:#ecfeff; border:1px solid #a5f3fc; margin-bottom:16px">📨</div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; margin:0 0 8px">Same support</h3>
+              <div style="font-size:14.5px; color:#475569; line-height:1.6">One team for all our apps — write to randy@sunmesalabs.com, we answer within 1–2 business days.</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" style="margin-bottom:20px">
+            <div class="h-100 shadow-sm" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:26px 24px">
+              <div style="width:56px; height:56px; border-radius:14px; text-align:center; line-height:56px; font-size:26px; background-color:#ecfeff; border:1px solid #a5f3fc; margin-bottom:16px">🧩</div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; margin:0 0 8px">Current Odoo versions</h3>
+              <div style="font-size:14.5px; color:#475569; line-height:1.6">Every app ships for the current Odoo versions, each branch tested on its own version.</div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" style="margin-bottom:20px">
+            <div class="h-100 shadow-sm" style="background-color:#fff; border:1px solid #e2e8f0; border-radius:18px; padding:26px 24px">
+              <div style="width:56px; height:56px; border-radius:14px; text-align:center; line-height:56px; font-size:26px; background-color:#ecfeff; border:1px solid #a5f3fc; margin-bottom:16px">✅</div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; margin:0 0 8px">Tested before release</h3>
+              <div style="font-size:14.5px; color:#475569; line-height:1.6">Automated tests run on a fresh database before every update.</div>
+            </div>
+          </div>
+        </div>
+  <div style="text-align:center; color:#475569; font-size:14px; margin-top:6px">Odoo 17, 18, 19 · Support: <a href="mailto:randy@sunmesalabs.com" style="color:#0ea5c6; font-weight:700">randy@sunmesalabs.com</a> · Website: <b style="color:#0b1220">odoo.sunmesalabs.com</b></div>
+</div>
+
+<!-- SUNMESA-CROSS-SELL:START -->
+<div class="container" style="padding-top:40px; padding-bottom:40px">
+  <div style="text-align:center; margin-bottom:30px">
+    <h2 style="font-size:2.1rem; font-weight:800; color:#0f172a; margin:0; letter-spacing:-.01em">More apps by <span style="color:#0ea5c6">SunMesa Labs</span></h2>
+    <div style="width:66px; height:4px; background-color:#22d3ee; border-radius:3px; margin:16px auto 8px"></div>
+    <p style="color:#64748b; font-size:16px; margin:6px auto 0">8 focused apps for Odoo 18.0 · same support · one-time price, no subscription</p>
+  </div>
+  <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+          <a href="https://apps.odoo.com/apps/modules/18.0/sale_customer_credit_hold" class="d-block h-100" style="text-decoration:none">
+            <div class="h-100 d-flex flex-column shadow-sm" style="background-color:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:22px">
+              <div class="overflow-hidden" style="border:2px solid #e2e8f0; border-radius:12px; margin-bottom:16px">
+                <img src="more-apps/sale_customer_credit_hold.jpg" alt="Customer Credit Hold &amp; Overdue Warning" style="width:100%; height:auto; display:block">
+              </div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; line-height:1.3; margin:0 0 6px; letter-spacing:-.01em">Customer Credit Hold &amp; Overdue Warning</h3>
+              <div class="flex-grow-1" style="font-size:14.5px; color:#64748b; line-height:1.6; margin-bottom:14px">Red banner + optional block on Sale Orders when customer has overdue invoices.</div>
+              <div class="d-flex justify-content-between align-items-center" style="border-top:1px solid #e2e8f0; padding-top:12px">
+                <span style="font-size:14px; font-weight:800; color:#0b1220">$49 one-time<span style="color:#94a3b8; font-weight:600"></span></span>
+                <span style="font-size:14px; font-weight:800; color:#0ea5c6">View app →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <a href="https://apps.odoo.com/apps/modules/18.0/sale_recurring_simple" class="d-block h-100" style="text-decoration:none">
+            <div class="h-100 d-flex flex-column shadow-sm" style="background-color:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:22px">
+              <div class="overflow-hidden" style="border:2px solid #e2e8f0; border-radius:12px; margin-bottom:16px">
+                <img src="more-apps/sale_recurring_simple.jpg" alt="Simple Recurring Sales Orders" style="width:100%; height:auto; display:block">
+              </div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; line-height:1.3; margin:0 0 6px; letter-spacing:-.01em">Simple Recurring Sales Orders</h3>
+              <div class="flex-grow-1" style="font-size:14.5px; color:#64748b; line-height:1.6; margin-bottom:14px">Auto-duplicate Sale Orders on a weekly/monthly schedule — no Subscriptions app required.</div>
+              <div class="d-flex justify-content-between align-items-center" style="border-top:1px solid #e2e8f0; padding-top:12px">
+                <span style="font-size:14px; font-weight:800; color:#0b1220">$20 one-time<span style="color:#94a3b8; font-weight:600"></span></span>
+                <span style="font-size:14px; font-weight:800; color:#0ea5c6">View app →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <a href="https://apps.odoo.com/apps/modules/18.0/sale_margin_role_control" class="d-block h-100" style="text-decoration:none">
+            <div class="h-100 d-flex flex-column shadow-sm" style="background-color:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:22px">
+              <div class="overflow-hidden" style="border:2px solid #e2e8f0; border-radius:12px; margin-bottom:16px">
+                <img src="more-apps/sale_margin_role_control.jpg" alt="Sale Margin Visibility by Role" style="width:100%; height:auto; display:block">
+              </div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; line-height:1.3; margin:0 0 6px; letter-spacing:-.01em">Sale Margin Visibility by Role</h3>
+              <div class="flex-grow-1" style="font-size:14.5px; color:#64748b; line-height:1.6; margin-bottom:14px">Restrict margin &amp; cost price visibility to Sales Managers. Set minimum margin threshold with red-alert warnings. Audit…</div>
+              <div class="d-flex justify-content-between align-items-center" style="border-top:1px solid #e2e8f0; padding-top:12px">
+                <span style="font-size:14px; font-weight:800; color:#0b1220">$15 one-time<span style="color:#94a3b8; font-weight:600"></span></span>
+                <span style="font-size:14px; font-weight:800; color:#0ea5c6">View app →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <a href="https://apps.odoo.com/apps/modules/18.0/mail_chatter_collapse" class="d-block h-100" style="text-decoration:none">
+            <div class="h-100 d-flex flex-column shadow-sm" style="background-color:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:22px">
+              <div class="overflow-hidden" style="border:2px solid #e2e8f0; border-radius:12px; margin-bottom:16px">
+                <img src="more-apps/mail_chatter_collapse.jpg" alt="Collapsible Chatter - Hide Side Log Note Panel" style="width:100%; height:auto; display:block">
+              </div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; line-height:1.3; margin:0 0 6px; letter-spacing:-.01em">Collapsible Chatter - Hide Side Log Note Panel</h3>
+              <div class="flex-grow-1" style="font-size:14.5px; color:#64748b; line-height:1.6; margin-bottom:14px">One-click arrow to collapse the side chatter (Send message / Log note) so form views and their list tables use the full…</div>
+              <div class="d-flex justify-content-between align-items-center" style="border-top:1px solid #e2e8f0; padding-top:12px">
+                <span style="font-size:14px; font-weight:800; color:#0b1220">$9 one-time<span style="color:#94a3b8; font-weight:600"></span></span>
+                <span style="font-size:14px; font-weight:800; color:#0ea5c6">View app →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <a href="https://apps.odoo.com/apps/modules/18.0/partner_credit_warning" class="d-block h-100" style="text-decoration:none">
+            <div class="h-100 d-flex flex-column shadow-sm" style="background-color:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:22px">
+              <div class="overflow-hidden" style="border:2px solid #e2e8f0; border-radius:12px; margin-bottom:16px">
+                <img src="more-apps/partner_credit_warning.jpg" alt="Customer Credit Warning on Sale Order" style="width:100%; height:auto; display:block">
+              </div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; line-height:1.3; margin:0 0 6px; letter-spacing:-.01em">Customer Credit Warning on Sale Order</h3>
+              <div class="flex-grow-1" style="font-size:14.5px; color:#64748b; line-height:1.6; margin-bottom:14px">Warn or block sale order confirmation when customer exceeds credit limit — free Community alternative to Odoo…</div>
+              <div class="d-flex justify-content-between align-items-center" style="border-top:1px solid #e2e8f0; padding-top:12px">
+                <span style="font-size:14px; font-weight:800; color:#16a34a">Free<span style="color:#94a3b8; font-weight:600"></span></span>
+                <span style="font-size:14px; font-weight:800; color:#0ea5c6">View app →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <a href="https://apps.odoo.com/apps/modules/18.0/mrp_material_check" class="d-block h-100" style="text-decoration:none">
+            <div class="h-100 d-flex flex-column shadow-sm" style="background-color:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:22px">
+              <div class="overflow-hidden" style="border:2px solid #e2e8f0; border-radius:12px; margin-bottom:16px">
+                <img src="more-apps/mrp_material_check.jpg" alt="MRP Material Check" style="width:100%; height:auto; display:block">
+              </div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; line-height:1.3; margin:0 0 6px; letter-spacing:-.01em">MRP Material Check</h3>
+              <div class="flex-grow-1" style="font-size:14.5px; color:#64748b; line-height:1.6; margin-bottom:14px">Block or warn before producing when components are insufficient — popup lists each shortage.</div>
+              <div class="d-flex justify-content-between align-items-center" style="border-top:1px solid #e2e8f0; padding-top:12px">
+                <span style="font-size:14px; font-weight:800; color:#16a34a">Free<span style="color:#94a3b8; font-weight:600"></span></span>
+                <span style="font-size:14px; font-weight:800; color:#0ea5c6">View app →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <a href="https://apps.odoo.com/apps/modules/18.0/product_completeness_tracker" class="d-block h-100" style="text-decoration:none">
+            <div class="h-100 d-flex flex-column shadow-sm" style="background-color:#fff; border:2px solid #e2e8f0; border-radius:16px; padding:22px">
+              <div class="overflow-hidden" style="border:2px solid #e2e8f0; border-radius:12px; margin-bottom:16px">
+                <img src="more-apps/product_completeness_tracker.jpg" alt="Product Completeness Tracker" style="width:100%; height:auto; display:block">
+              </div>
+              <h3 style="font-size:19px; font-weight:800; color:#0f172a; line-height:1.3; margin:0 0 6px; letter-spacing:-.01em">Product Completeness Tracker</h3>
+              <div class="flex-grow-1" style="font-size:14.5px; color:#64748b; line-height:1.6; margin-bottom:14px">Progress bar on product list showing data completeness — highlights missing image, description, price, and category.</div>
+              <div class="d-flex justify-content-between align-items-center" style="border-top:1px solid #e2e8f0; padding-top:12px">
+                <span style="font-size:14px; font-weight:800; color:#16a34a">Free<span style="color:#94a3b8; font-weight:600"></span></span>
+                <span style="font-size:14px; font-weight:800; color:#0ea5c6">View app →</span>
+              </div>
+            </div>
+          </a>
+        </div>
+  </div>
+  <div style="text-align:center; margin-top:8px">
+    <a href="https://apps.odoo.com/apps/modules/browse?author=SunMesa%20Labs" style="display:inline-block; background-color:#0b1220; color:#fff; padding:14px 34px; border-radius:50px; font-size:16px; font-weight:800; text-decoration:none">See all SunMesa Labs apps →</a>
+  </div>
+</div>
+<!-- SUNMESA-CROSS-SELL:END -->
 
 </body>
 </html>
